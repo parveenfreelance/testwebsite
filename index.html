@@ -16,6 +16,22 @@
 
   gtag('config', 'G-4T0BJ6MMWW');
 </script>
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const utm_source = urlParams.get('utm_source');
+  const utm_medium = urlParams.get('utm_medium');
+  const utm_campaign = urlParams.get('utm_campaign');
+  const utm_content = urlParams.get('utm_content');
+
+  if (utm_source) {
+    gtag('event', 'utm_page_view', {
+      'utm_source': utm_source,
+      'utm_medium': utm_medium,
+      'utm_campaign': utm_campaign,
+      'utm_content': utm_content
+    });
+  }
+</script>
 
   <style>
     body {
