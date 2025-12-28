@@ -278,6 +278,35 @@ footer {
   text-align: center;
   padding: 15px;
 }
+  #aboutSection {
+  background: #ffffff;
+  padding: 30px 20px;
+  margin: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  animation: fadeIn 1.5s ease forwards;
+  opacity: 0;
+}
+
+#aboutSection h2 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+#aboutSection p {
+  margin: 12px 0;
+  text-align: justify;
+  line-height: 1.7;
+  font-size: 15px;
+  color: #333;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 </style>
 </head>
 
@@ -363,13 +392,31 @@ footer {
 
 
 <!-- ABOUT -->
-<section>
-<h2 id="aboutTitle">About Dalanwas</h2>
-<p id="aboutText">
-Dalanwas is a village in Mahendragarh district of Haryana. The village has a strong
-agricultural base and growing focus on education, infrastructure, and community welfare.
-</p>
+<section id="aboutSection">
+  <h2 id="aboutTitle">About Dalanwas</h2>
+  <p id="aboutText">
+    Dalanwas (also spelled Dalenwas) is a vibrant rural settlement located in the Mahendragarh district of Haryana, India. Situated approximately 15 kilometers from the district headquarters at Mahendragarh and close to Satnali, this village forms part of the Satnali Tehsil administrative subdivision and is governed by its elected Gram Panchayat under the Panchayati Raj system.
+  </p>
+  <p id="aboutText2">
+    As per the 2011 Census of India, Dalanwas had a total population of 3,672 residents living in 702 families. Among them, around 1,936 are males and 1,736 are females. The village exhibits a higher literacy rate of 76.65%, which is slightly above the state average, with male literacy at about 89.96% and female literacy around 62.18%.
+  </p>
+  <p id="aboutText3">
+    Dalanwas lies along the important Mahendragarh–Satnali road, giving it good connectivity with nearby towns and cities, including Narnaul and Pilani. Public transport and private bus services are available, and railway stations are reachable within 5–10 km, facilitating travel for education, employment, and trade.
+  </p>
+  <p id="aboutText4">
+    The village community is agriculturally rooted, with farming still a major occupation for many families. Yet, Dalanwas also places strong emphasis on education and youth development. The presence of institutions such as Government Girls Senior Secondary School, Nalanda Vidya Peeth School, and several primary schools highlights the focus on foundational education.
+  </p>
+  <p id="aboutText5">
+    A notable feature of the village is the Baba Sawanth Nath Library, a community learning center where students and aspirants of competitive exams like SSC, banking, and engineering access study materials and books in a peaceful environment.
+  </p>
+  <p id="aboutText6">
+    Culturally, Dalanwas reflects the rich traditions of rural Haryana. Festivals such as Holi and Diwali are celebrated with enthusiasm and community participation. Local fairs, especially those associated with religious events like the Sati Mata Fair and Dulendi near neighboring localities, continue the village’s festive spirit and cultural continuity.
+  </p>
+  <p id="aboutText7">
+    Life in Dalanwas balances tradition with progress. While rooted in its agricultural heritage, the village increasingly embraces education and connectivity, offering its youth broader horizons while retaining a close-knit societal structure. Dalanwas stands as a testament to the enduring spirit of rural India — where community values, cultural identity, and aspirations for progress go hand in hand.
+  </p>
 </section>
+
 
 <!-- ADMIN INFO -->
 <section>
@@ -500,6 +547,14 @@ function setLang(lang) {
     eduText.innerText = "बाबा सावंत नाथ पुस्तकालय छात्रों को प्रतियोगी परीक्षाओं की तैयारी में सहायता करता है।";
     galleryTitle.innerText = "गांव की झलकियां";
     mapTitle.innerText = "गांव का स्थान";
+    aboutTitle.innerText = "डालनवास के बारे में";
+  aboutText.innerText = "डालनवास (जिसे डालेनवास भी कहा जाता है) हरियाणा के महेन्द्रगढ़ जिले का एक जीवंत ग्रामीण गांव है। महेन्द्रगढ़ जिला मुख्यालय से लगभग 15 किलोमीटर और सतनाली के पास स्थित, यह गांव सतनाली तहसील प्रशासनिक उपखंड का हिस्सा है और इसके निर्वाचित ग्राम पंचायत द्वारा पंचायती राज प्रणाली के तहत शासित है।";
+  aboutText2.innerText = "2011 की जनगणना के अनुसार, डालनवास में कुल 3,672 निवासी 702 परिवारों में रहते हैं। इनमें लगभग 1,936 पुरुष और 1,736 महिलाएं हैं। गांव की साक्षरता दर 76.65% है, जो राज्य औसत से थोड़ी अधिक है, पुरुष साक्षरता लगभग 89.96% और महिला साक्षरता लगभग 62.18% है।";
+  aboutText3.innerText = "डालनवास महेन्द्रगढ़–सतनाली सड़क पर स्थित है, जिससे नजदीकी शहरों जैसे नारनौल और पिलानी के साथ अच्छा कनेक्टिविटी है। सार्वजनिक परिवहन और निजी बस सेवाएं उपलब्ध हैं, और रेलवे स्टेशन 5–10 किलोमीटर के भीतर हैं।";
+  aboutText4.innerText = "गांव की आबादी कृषि पर आधारित है, और खेती अभी भी कई परिवारों के लिए मुख्य पेशा है। फिर भी, डालनवास शिक्षा और युवाओं के विकास पर जोर देता है। यहां सरकारी बालिकाओं उच्च माध्यमिक विद्यालय, नालंदा विद्या पीठ स्कूल और कई प्राथमिक विद्यालय मौजूद हैं।";
+  aboutText5.innerText = "गांव की एक विशेषता बाबा सावंत नाथ पुस्तकालय है, जहां छात्र प्रतियोगी परीक्षाओं की तैयारी के लिए अध्ययन सामग्री और पुस्तकें प्राप्त कर सकते हैं।";
+  aboutText6.innerText = "सांस्कृतिक रूप से, डालनवास हरियाणा के ग्रामीण परंपराओं को दर्शाता है। होली और दीवाली जैसी त्योहारों को उत्साह और सामुदायिक भागीदारी के साथ मनाया जाता है। स्थानीय मेले और धार्मिक आयोजनों से जुड़ी गतिविधियां यहां की सांस्कृतिक विरासत को बनाए रखती हैं।";
+  aboutText7.innerText = "डालनवास में जीवन परंपरा और प्रगति का संतुलन रखता है। कृषि परंपरा में रचे-बसे गांव में शिक्षा और कनेक्टिविटी को बढ़ावा मिल रहा है। डालनवास ग्रामीण भारत की जीवंतता और सामुदायिक मूल्यों का उदाहरण प्रस्तुत करता है।";
   } else {
     location.reload();
   }
