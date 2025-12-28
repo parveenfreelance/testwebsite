@@ -3,13 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Village Dalanwas | Haryana</title>
+  <div id="top-info" style="margin-top:10px;font-size:14px;">
+  🌤️ <span id="weather">Loading weather...</span> |
+  🕒 <span id="time"></span> |
+  📅 <span id="date"></span>
+</div>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #f4f6f9;
+  line-height: 1.6;
 }
 
 /* HEADER */
@@ -18,6 +26,21 @@ header {
   color: white;
   padding: 25px;
   text-align: center;
+  position: relative;
+}
+
+/* LANGUAGE TOGGLE */
+.lang-toggle {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+.lang-toggle button {
+  padding: 6px 10px;
+  margin-left: 4px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 /* NAV */
@@ -34,25 +57,40 @@ nav a {
 }
 nav a:hover { text-decoration: underline; }
 
-/* SLIDER */
-.slider {
-  position: relative;
-  max-height: 350px;
-  overflow: hidden;
+/* HERO */
+.hero {
+  background: url("images/village1.jpg") center/cover no-repeat;
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
 }
-.slide {
-  display: none;
-}
-.slide img {
-  width: 100%;
-  height: 350px;
-  object-fit: cover;
-}
-.active {
-  display: block;
+.hero h1 { font-size: 40px; }
+.hero p { max-width: 800px; margin: auto; }
+.hero .btn {
+  display: inline-block;
+  margin: 15px 10px;
+  padding: 12px 20px;
+  background: #ffc107;
+  color: #000;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
 }
 
-/* NOTICE TICKER */
+/* SLIDER */
+.slider {
+  max-height: 320px;
+  overflow: hidden;
+}
+.slide { display: none; }
+.slide img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+}
+.active { display: block; }
+
+/* NOTICE */
 .notice-bar {
   background: #fff3cd;
   border-left: 6px solid #ffc107;
@@ -63,7 +101,7 @@ nav a:hover { text-decoration: underline; }
 .notice-text {
   display: inline-block;
   padding-left: 100%;
-  animation: scroll 15s linear infinite;
+  animation: scroll 18s linear infinite;
   font-weight: bold;
 }
 @keyframes scroll {
@@ -75,33 +113,41 @@ nav a:hover { text-decoration: underline; }
 section {
   background: white;
   margin: 20px;
-  padding: 20px;
+  padding: 25px;
   border-radius: 10px;
 }
 h2 { color: #2c3e50; }
 
-/* STATS */
-.stats {
+/* INFO GRID */
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
   gap: 15px;
 }
 .card {
   background: #ecf0f1;
   padding: 15px;
-  text-align: center;
   border-radius: 10px;
+  text-align: center;
   font-weight: bold;
+}
+
+/* STATS */
+.stats span {
+  font-size: 26px;
+  color: #1f2d3d;
 }
 
 /* GALLERY */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
   gap: 10px;
 }
 .gallery img {
   width: 100%;
+  height: 160px;
+  object-fit: cover;
   border-radius: 8px;
 }
 
@@ -125,111 +171,198 @@ footer {
 <body>
 
 <header>
-  <h1>Village Dalanwas</h1>
-  <p>Mahendragarh District, Haryana</p>
+  <h1 id="title">Village Dalanwas</h1>
+  <p id="subtitle">Mahendragarh District, Haryana</p>
+
+  <div class="lang-toggle">
+    <button onclick="setLang('en')">EN</button>
+    <button onclick="setLang('hi')">हिंदी</button>
+  </div>
 </header>
 
 <nav>
   <a href="index.html">Home</a>
-  <a href="about.html">About</a>
   <a href="gallery.html">Gallery</a>
   <a href="events.html">Events</a>
   <a href="library.html">Library</a>
   <a href="contact.html">Contact</a>
 </nav>
 
-<!-- IMAGE SLIDER -->
+<!-- HERO -->
+<div class="hero">
+  <h1 id="heroTitle">Welcome to Dalanwas</h1>
+  <p id="heroText">
+    A progressive village of Haryana known for education, unity, culture and development.
+  </p>
+  <a class="btn" href="gallery.html" id="heroBtn1">View Gallery</a>
+  <a class="btn" href="library.html" id="heroBtn2">Village Library</a>
+</div>
+
+<!-- SLIDER -->
 <div class="slider">
   <div class="slide active"><img src="images/village1.jpg"></div>
   <div class="slide"><img src="images/village2.jpg"></div>
   <div class="slide"><img src="images/village3.jpg"></div>
 </div>
 
-<!-- NOTICE TICKER -->
+<!-- NOTICE -->
 <div class="notice-bar">
-  <div class="notice-text">
-    📢 Gram Sabha meeting coming soon | 📚 Baba Sawanth Nath Library admissions open | 🇮🇳 Independence Day celebration on 15 August | 🧹 Clean Village Drive every Sunday
+  <div class="notice-text" id="noticeText">
+    📢 Gram Sabha meeting announcement | 📚 Library open for students | 🇮🇳 National festival celebrations | 🧹 Clean village drive
   </div>
 </div>
 
-<!-- INTRO -->
+<!-- ABOUT -->
 <section>
-<h2>About Dalanwas</h2>
-<p>
-Dalanwas is a progressive village in Mahendragarh district of Haryana, known
-for education, unity, and development. The village maintains a strong focus
-on student learning and community welfare.
+<h2 id="aboutTitle">About Dalanwas</h2>
+<p id="aboutText">
+Dalanwas is a village in Mahendragarh district of Haryana. The village has a strong
+agricultural base and growing focus on education, infrastructure, and community welfare.
 </p>
+</section>
+
+<!-- ADMIN INFO -->
+<section>
+<h2 id="adminTitle">Administrative Information</h2>
+<div class="grid">
+  <div class="card">District<br>Mahendragarh</div>
+  <div class="card">State<br>Haryana</div>
+  <div class="card">PIN Code<br>123024</div>
+  <div class="card">Gram Panchayat<br>Dalanwas</div>
+</div>
 </section>
 
 <!-- STATS -->
 <section>
-<h2>Village at a Glance</h2>
-<div class="stats">
-  <div class="card">Population<br>3,672+</div>
-  <div class="card">Families<br>702</div>
-  <div class="card">Literacy<br>76.65%</div>
-  <div class="card">PIN Code<br>123024</div>
+<h2 id="statsTitle">Village at a Glance</h2>
+<div class="grid stats">
+  <div class="card"><span data-count="3672">0</span><br><span id="pop">Population</span></div>
+  <div class="card"><span data-count="702">0</span><br><span id="fam">Families</span></div>
+  <div class="card"><span data-count="76">0</span>%<br><span id="lit">Literacy Rate</span></div>
+  <div class="card"><span data-count="5">0</span><br><span id="sch">Schools Nearby</span></div>
 </div>
 </section>
 
-<!-- FACILITIES -->
+<!-- EDUCATION -->
 <section>
-<h2>Village Facilities</h2>
-<ul>
-  <li>🏫 Government & Private Schools</li>
-  <li>📚 Baba Sawanth Nath Library</li>
-  <li>🏥 Nearby Health Center</li>
-  <li>🚰 Drinking Water Supply</li>
-  <li>🛣️ Road & Transport Connectivity</li>
-</ul>
+<h2 id="eduTitle">Education & Library</h2>
+<p id="eduText">
+Education is a priority in Dalanwas. The Baba Sawanth Nath Library supports students
+preparing for competitive, engineering, medical, and government examinations.
+</p>
 </section>
 
-<!-- EVENTS -->
+<!-- GALLERY -->
 <section>
-<h2>Major Events</h2>
-<ul>
-  <li>🇮🇳 Independence Day</li>
-  <li>🇮🇳 Republic Day</li>
-  <li>🎉 Cultural & Religious Festivals</li>
-  <li>⚽ Annual Sports Meet</li>
-</ul>
-</section>
-
-<!-- GALLERY PREVIEW -->
-<section>
-<h2>Village Gallery</h2>
+<h2 id="galleryTitle">Village Glimpses</h2>
 <div class="gallery">
-  <img src="images/gallery1.jpg">
-  <img src="images/gallery2.jpg">
-  <img src="images/gallery3.jpg">
+  <img src="images/village1.jpg">
+  <img src="images/village2.jpg">
+  <img src="images/village3.jpg">
+  <img src="images/village4.jpg">
 </div>
 </section>
 
 <!-- MAP -->
 <section>
-<h2>Village Location</h2>
-<iframe
-  loading="lazy"
-  allowfullscreen
-  src="https://www.google.com/maps?q=Dalanwas%20Mahendragarh%20Haryana&output=embed">
+<h2 id="mapTitle">Village Location</h2>
+<iframe loading="lazy" allowfullscreen
+src="https://www.google.com/maps?q=Dalanwas%20Mahendragarh%20Haryana&output=embed">
 </iframe>
 </section>
 
 <footer>
-<p>© 2025 Village Dalanwas, Haryana</p>
+  <p>© 2025 Village Dalanwas | Haryana</p>
+
+  <div style="margin-top:8px;">
+    <a href="https://www.facebook.com/" target="_blank"
+       style="color:white;margin:0 10px;text-decoration:none;">
+      📘 Facebook
+    </a>
+
+    <a href="https://www.instagram.com/" target="_blank"
+       style="color:white;margin:0 10px;text-decoration:none;">
+      📸 Instagram
+    </a>
+  </div>
 </footer>
 
-<!-- SLIDER SCRIPT -->
-<script>
-let index = 0;
-const slides = document.querySelectorAll(".slide");
 
+<script>
+/* SLIDER */
+let sIndex = 0;
+const slides = document.querySelectorAll(".slide");
 setInterval(() => {
-  slides[index].classList.remove("active");
-  index = (index + 1) % slides.length;
-  slides[index].classList.add("active");
+  slides[sIndex].classList.remove("active");
+  sIndex = (sIndex + 1) % slides.length;
+  slides[sIndex].classList.add("active");
 }, 4000);
+
+/* COUNTERS */
+document.querySelectorAll("[data-count]").forEach(el => {
+  let start = 0;
+  const end = +el.dataset.count;
+  const step = Math.ceil(end / 100);
+  const i = setInterval(() => {
+    start += step;
+    if (start >= end) {
+      el.innerText = end;
+      clearInterval(i);
+    } else el.innerText = start;
+  }, 30);
+});
+
+/* LANGUAGE TOGGLE */
+function setLang(lang) {
+  if (lang === "hi") {
+    title.innerText = "गांव डालनवास";
+    subtitle.innerText = "महेन्द्रगढ़ जिला, हरियाणा";
+    heroTitle.innerText = "डालनवास में आपका स्वागत है";
+    heroText.innerText = "हरियाणा का एक प्रगतिशील गांव जो शिक्षा और विकास के लिए जाना जाता है।";
+    heroBtn1.innerText = "गैलरी देखें";
+    heroBtn2.innerText = "गांव पुस्तकालय";
+    aboutTitle.innerText = "डालनवास के बारे में";
+    aboutText.innerText = "डालनवास हरियाणा के महेन्द्रगढ़ जिले का एक गांव है। यहां शिक्षा और विकास पर विशेष ध्यान दिया जाता है।";
+    adminTitle.innerText = "प्रशासनिक जानकारी";
+    statsTitle.innerText = "गांव की जानकारी";
+    pop.innerText = "जनसंख्या";
+    fam.innerText = "परिवार";
+    lit.innerText = "साक्षरता दर";
+    sch.innerText = "विद्यालय";
+    eduTitle.innerText = "शिक्षा और पुस्तकालय";
+    eduText.innerText = "बाबा सावंत नाथ पुस्तकालय छात्रों को प्रतियोगी परीक्षाओं की तैयारी में सहायता करता है।";
+    galleryTitle.innerText = "गांव की झलकियां";
+    mapTitle.innerText = "गांव का स्थान";
+  } else {
+    location.reload();
+  }
+}
+</script>
+<script>
+/* TIME & DATE */
+function updateTime() {
+  const now = new Date();
+  document.getElementById("time").innerText =
+    now.toLocaleTimeString();
+  document.getElementById("date").innerText =
+    now.toDateString();
+}
+setInterval(updateTime, 1000);
+updateTime();
+
+/* WEATHER (Open-Meteo - FREE, no API key) */
+fetch("https://api.open-meteo.com/v1/forecast?latitude=28.28&longitude=76.15&current_weather=true")
+  .then(res => res.json())
+  .then(data => {
+    const temp = data.current_weather.temperature;
+    const wind = data.current_weather.windspeed;
+    document.getElementById("weather").innerText =
+      `Dalanwas: ${temp}°C, Wind ${wind} km/h`;
+  })
+  .catch(() => {
+    document.getElementById("weather").innerText =
+      "Weather unavailable";
+  });
 </script>
 
 </body>
