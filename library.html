@@ -19,17 +19,33 @@
 <style>
 body{margin:0;font-family:'Roboto',sans-serif;background:#f4f6f9;}
 
+/* HEADER */
+header {
+  background: linear-gradient(to right, #2c3e50, #34495e);
+  color: white;
+  padding: 25px;
+  text-align: center;
+}
+header h1{margin:0;font-size:36px;}
+header p{margin:5px 0;font-size:18px;}
+
+/* NAV */
+nav {
+  background: #1f2d3d;
+  text-align: center;
+  padding: 12px;
+}
+nav a {
+  color: white;
+  margin: 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+nav a:hover { text-decoration: underline; }
+
 /* LANGUAGE TOGGLE */
 .lang-btn{padding:8px 15px;margin:0 5px;cursor:pointer;border:none;border-radius:8px;background:#34495e;color:white;font-weight:bold;transition: background 0.3s;}
 .lang-btn:hover{background:#2c3e50;}
-
-/* HERO */
-header.hero{position:relative;height:300px;background:linear-gradient(120deg,#2c3e50,#34495e);color:white;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
-header.hero::before{content:"";position:absolute;width:200%;height:200%;background:url('images/library-bg.jpg') no-repeat center/cover;opacity:0.2;top:-50%;left:-50%;animation:moveBg 30s linear infinite;z-index:0;}
-@keyframes moveBg{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
-header.hero .hero-content{position:relative;z-index:1;}
-header.hero h1{font-size:36px;text-shadow:2px 2px 8px rgba(0,0,0,0.7);}
-header.hero p{font-size:18px;margin-top:8px;}
 
 /* NOTICE TICKER */
 .notice-bar{background:#fff3cd;border-left:6px solid #ffc107;overflow:hidden;white-space:nowrap;padding:10px;font-weight:bold;margin:0 20px;border-radius:8px;}
@@ -59,7 +75,7 @@ section h2{text-align:center;color:#2c3e50;margin-bottom:15px;}
 
 /* GALLERY */
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;}
-.gallery img,.gallery iframe{width:100%;border-radius:8px;transition: transform 0.3s;}
+.gallery img,.gallery iframe{width:100%;height:200px;object-fit:cover;border-radius:8px;transition: transform 0.3s;}
 .gallery img:hover,.gallery iframe:hover{transform:scale(1.05);}
 
 /* DONATION */
@@ -72,26 +88,42 @@ section h2{text-align:center;color:#2c3e50;margin-bottom:15px;}
 /* CALENDAR */
 #libraryCalendar{max-width:900px;margin:20px auto;}
 
+/* FOOTER */
+footer {
+  background: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
 /* RESPONSIVE */
-@media(max-width:600px){header.hero h1{font-size:28px;}header.hero p{font-size:14px;}}
+@media(max-width:600px){header h1{font-size:28px;}header p{font-size:14px;}}
 </style>
 </head>
 
 <body>
+
+<!-- HEADER -->
+<header>
+  <h1>Baba Sawanth Nath Library</h1>
+  <p>Village Dalanwas, Haryana</p>
+</header>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="events.html">Events</a>
+  <a href="library.html">Library</a>
+  <a href="contact.html">Contact</a>
+</nav>
 
 <!-- LANGUAGE TOGGLE -->
 <div style="text-align:center; margin:10px 0;">
   <button class="lang-btn" onclick="setLang('en')">EN</button>
   <button class="lang-btn" onclick="setLang('hi')">हिंदी</button>
 </div>
-
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-content">
-    <h1 id="heroTitle">Baba Sawanth Nath Library</h1>
-    <p id="heroText">A community library supporting students for government exams and education.</p>
-  </div>
-</header>
 
 <!-- NOTICE TICKER -->
 <div class="notice-bar">
@@ -155,10 +187,15 @@ section h2{text-align:center;color:#2c3e50;margin-bottom:15px;}
 <section id="gallerySection">
   <h2 id="galleryTitle">Library Gallery</h2>
   <div class="gallery">
-    <img src="images/library1.jpg" alt="Library Image 1">
-    <img src="images/library2.jpg" alt="Library Image 2">
+    <img src="images/village1.jpg" alt="Library Image 1">
+    <img src="images/village2.jpg" alt="Library Image 2">
+    <img src="images/village3.jpg" alt="Library Image 3">
+    <img src="images/village4.jpg" alt="Library Image 4">
     <iframe width="100%" height="200" src="https://www.youtube.com/embed/UuQWqhg6DdA" title="Library Video" frameborder="0" allowfullscreen></iframe>
-    <img src="images/library3.jpg" alt="Library Image 3">
+    <img src="images/village5.jpg" alt="Library Image 5">
+    <img src="images/village6.jpg" alt="Library Image 6">
+    <img src="images/village7.jpg" alt="Library Image 7">
+    <img src="images/village8.jpg" alt="Library Image 8">
   </div>
 </section>
 
@@ -175,6 +212,11 @@ section h2{text-align:center;color:#2c3e50;margin-bottom:15px;}
   <h2>Top Donors & Contributions</h2>
   <canvas id="donorChart"></canvas>
 </section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Village Dalanwas, Haryana | Follow us on <i class="fab fa-facebook"></i> Facebook | <i class="fab fa-instagram"></i> Instagram</p>
+</footer>
 
 <script>
 // LANGUAGE TOGGLE
