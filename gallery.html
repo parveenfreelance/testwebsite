@@ -51,13 +51,15 @@ nav a {
 /* GALLERY GRID */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 15px;
   padding: 20px;
 }
+
 .gallery-item img,
-.gallery-item video {
+.gallery-item iframe {
   width: 100%;
+  height: 200px;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -73,7 +75,7 @@ nav a {
   align-items: center;
   z-index: 1000;
 }
-.lightbox img, .lightbox video {
+.lightbox img {
   max-width: 90%;
   max-height: 80%;
 }
@@ -91,7 +93,6 @@ nav a {
   font-size: 40px;
   color: white;
   cursor: pointer;
-  padding: 10px;
 }
 .prev { left: 30px; }
 .next { right: 30px; }
@@ -110,7 +111,7 @@ footer {
 
 <header>
   <h1>Dalanwas Village Gallery</h1>
-  <p>Photos & Videos of Village Life</p>
+  <p>Photos & YouTube Videos</p>
 </header>
 
 <nav>
@@ -120,7 +121,7 @@ footer {
   <a href="library.html">Library</a>
 </nav>
 
-<!-- FILTERS -->
+<!-- FILTER -->
 <div class="filters">
   <button onclick="filterItems('all')">All</button>
   <button onclick="filterItems('photo')">Photos</button>
@@ -130,6 +131,7 @@ footer {
 <!-- GALLERY -->
 <div class="gallery">
 
+  <!-- PHOTOS -->
   <div class="gallery-item photo">
     <img src="images/village3.jpg" onclick="openLightbox(0)">
   </div>
@@ -142,15 +144,27 @@ footer {
     <img src="images/village1.jpg" onclick="openLightbox(2)">
   </div>
 
+  <!-- YOUTUBE VIDEOS -->
   <div class="gallery-item video">
-    <video src="videos/village1.mp4" controls></video>
+    <iframe 
+  src="https://www.youtube.com/embed/UuQWqhg6DdA"
+  width="100%"
+  height="220"
+  frameborder="0"
+  allowfullscreen>
+</iframe>
+
   </div>
 
   <div class="gallery-item video">
-    <iframe width="100%" height="200"
-      src="https://www.youtube.com/embed/VIDEO_ID"
-      allowfullscreen>
-    </iframe>
+    <iframe 
+  src="https://www.youtube.com/embed/UuQWqhg6DdA"
+  width="100%"
+  height="220"
+  frameborder="0"
+  allowfullscreen>
+</iframe>
+
   </div>
 
 </div>
@@ -169,9 +183,9 @@ footer {
 
 <script>
 const images = [
-  "images/gallery1.jpg",
-  "images/gallery2.jpg",
-  "images/gallery3.jpg"
+  "images/village1.jpg",
+  "images/village2.jpg",
+  "images/village3.jpg"
 ];
 let currentIndex = 0;
 
@@ -190,7 +204,7 @@ function changeSlide(step) {
   document.getElementById("lightboxImg").src = images[currentIndex];
 }
 
-/* Auto Slide */
+/* Auto slide */
 setInterval(() => {
   if (document.getElementById("lightbox").style.display === "flex") {
     changeSlide(1);
@@ -201,11 +215,8 @@ setInterval(() => {
 function filterItems(type) {
   const items = document.querySelectorAll(".gallery-item");
   items.forEach(item => {
-    if (type === "all" || item.classList.contains(type)) {
-      item.style.display = "block";
-    } else {
-      item.style.display = "none";
-    }
+    item.style.display =
+      type === "all" || item.classList.contains(type) ? "block" : "none";
   });
 }
 
