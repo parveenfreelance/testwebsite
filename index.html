@@ -1,97 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Village Dalanwas | Haryana</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Village Dalanwas | Haryana</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6f9;
-      line-height: 1.6;
-    }
-    header {
-      background: linear-gradient(to right, #2c3e50, #34495e);
-      color: white;
-      padding: 30px;
-      text-align: center;
-    }
-    nav {
-      background: #1f2d3d;
-      padding: 12px;
-      text-align: center;
-    }
-    nav a {
-      color: #fff;
-      margin: 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    section {
-      background: white;
-      margin: 20px;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    h2 {
-      color: #2c3e50;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 5px;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+}
 
-    /* Stats cards */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-    }
-    .card {
-      background: #ecf0f1;
-      padding: 20px;
-      text-align: center;
-      border-radius: 10px;
-    }
-    .card h3 {
-      margin: 0;
-      color: #2c3e50;
-    }
+/* HEADER */
+header {
+  background: linear-gradient(to right, #2c3e50, #34495e);
+  color: white;
+  padding: 25px;
+  text-align: center;
+}
 
-    /* Gallery */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 10px;
-    }
-    .gallery img {
-      width: 100%;
-      border-radius: 8px;
-    }
+/* NAV */
+nav {
+  background: #1f2d3d;
+  text-align: center;
+  padding: 12px;
+}
+nav a {
+  color: white;
+  margin: 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+nav a:hover { text-decoration: underline; }
 
-    /* Notice */
-    .notice {
-      background: #fff3cd;
-      padding: 15px;
-      border-left: 6px solid #ffc107;
-    }
+/* SLIDER */
+.slider {
+  position: relative;
+  max-height: 350px;
+  overflow: hidden;
+}
+.slide {
+  display: none;
+}
+.slide img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+.active {
+  display: block;
+}
 
-    iframe {
-      width: 100%;
-      border-radius: 10px;
-    }
+/* NOTICE TICKER */
+.notice-bar {
+  background: #fff3cd;
+  border-left: 6px solid #ffc107;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 10px;
+}
+.notice-text {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll 15s linear infinite;
+  font-weight: bold;
+}
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
 
-    footer {
-      background: #2c3e50;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 30px;
-    }
-  </style>
+/* SECTIONS */
+section {
+  background: white;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+}
+h2 { color: #2c3e50; }
+
+/* STATS */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+.card {
+  background: #ecf0f1;
+  padding: 15px;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+/* GALLERY */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+.gallery img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* MAP */
+iframe {
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+}
+
+/* FOOTER */
+footer {
+  background: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+</style>
 </head>
 
 <body>
@@ -103,115 +131,106 @@
 
 <nav>
   <a href="index.html">Home</a>
-  <a href="about.html">About Village</a>
+  <a href="about.html">About</a>
   <a href="gallery.html">Gallery</a>
   <a href="events.html">Events</a>
   <a href="library.html">Library</a>
   <a href="contact.html">Contact</a>
 </nav>
 
+<!-- IMAGE SLIDER -->
+<div class="slider">
+  <div class="slide active"><img src="images/village1.jpg"></div>
+  <div class="slide"><img src="images/village2.jpg"></div>
+  <div class="slide"><img src="images/village3.jpg"></div>
+</div>
+
+<!-- NOTICE TICKER -->
+<div class="notice-bar">
+  <div class="notice-text">
+    📢 Gram Sabha meeting coming soon | 📚 Baba Sawanth Nath Library admissions open | 🇮🇳 Independence Day celebration on 15 August | 🧹 Clean Village Drive every Sunday
+  </div>
+</div>
+
 <!-- INTRO -->
 <section>
-  <h2>Welcome to Dalanwas</h2>
-  <p>
-    Dalanwas is a progressive village located in Mahendragarh district of Haryana.
-    The village is known for its strong educational culture, social harmony,
-    and continuous development initiatives.
-  </p>
+<h2>About Dalanwas</h2>
+<p>
+Dalanwas is a progressive village in Mahendragarh district of Haryana, known
+for education, unity, and development. The village maintains a strong focus
+on student learning and community welfare.
+</p>
 </section>
 
-<!-- QUICK STATS -->
+<!-- STATS -->
 <section>
-  <h2>Village at a Glance</h2>
-  <div class="stats">
-    <div class="card">
-      <h3>3,672+</h3>
-      <p>Total Population</p>
-    </div>
-    <div class="card">
-      <h3>702</h3>
-      <p>Total Families</p>
-    </div>
-    <div class="card">
-      <h3>76.65%</h3>
-      <p>Literacy Rate</p>
-    </div>
-    <div class="card">
-      <h3>123024</h3>
-      <p>PIN Code</p>
-    </div>
-  </div>
-</section>
-
-<!-- REPRESENTATIVES -->
-<section>
-  <h2>Local Administration</h2>
-  <ul>
-    <li><strong>Current Sarpanch:</strong> ________</li>
-    <li><strong>Gram Panchayat:</strong> Dalanwas</li>
-    <li><strong>District:</strong> Mahendragarh</li>
-    <li><strong>State:</strong> Haryana</li>
-  </ul>
+<h2>Village at a Glance</h2>
+<div class="stats">
+  <div class="card">Population<br>3,672+</div>
+  <div class="card">Families<br>702</div>
+  <div class="card">Literacy<br>76.65%</div>
+  <div class="card">PIN Code<br>123024</div>
+</div>
 </section>
 
 <!-- FACILITIES -->
 <section>
-  <h2>Village Facilities</h2>
-  <ul>
-    <li>🏫 Government & Private Schools</li>
-    <li>📚 Baba Sawanth Nath Library</li>
-    <li>🏥 Health Center (Nearby)</li>
-    <li>🚰 Drinking Water Supply</li>
-    <li>🛣️ Road Connectivity</li>
-    <li>⚡ Electricity & Internet</li>
-  </ul>
+<h2>Village Facilities</h2>
+<ul>
+  <li>🏫 Government & Private Schools</li>
+  <li>📚 Baba Sawanth Nath Library</li>
+  <li>🏥 Nearby Health Center</li>
+  <li>🚰 Drinking Water Supply</li>
+  <li>🛣️ Road & Transport Connectivity</li>
+</ul>
 </section>
 
-<!-- NOTICES -->
+<!-- EVENTS -->
 <section>
-  <h2>Latest Announcements</h2>
-  <div class="notice">
-    <p>📢 Gram Sabha meeting will be announced soon.</p>
-    <p>📢 Library admission open for students.</p>
-    <p>📢 Village cleanliness drive every Sunday.</p>
-  </div>
-</section>
-
-<!-- EVENTS PREVIEW -->
-<section>
-  <h2>Village Events</h2>
-  <ul>
-    <li>🇮🇳 Independence Day Celebration</li>
-    <li>🇮🇳 Republic Day Program</li>
-    <li>🎉 Cultural & Religious Festivals</li>
-    <li>⚽ Annual Sports Meet</li>
-  </ul>
+<h2>Major Events</h2>
+<ul>
+  <li>🇮🇳 Independence Day</li>
+  <li>🇮🇳 Republic Day</li>
+  <li>🎉 Cultural & Religious Festivals</li>
+  <li>⚽ Annual Sports Meet</li>
+</ul>
 </section>
 
 <!-- GALLERY PREVIEW -->
 <section>
-  <h2>Photo Gallery</h2>
-  <div class="gallery">
-    <img src="images/village1.jpg" alt="Village Image">
-    <img src="images/village1.jpg" alt="Village Image">
-    <img src="images/village2.jpg" alt="Village Image">
-  </div>
+<h2>Village Gallery</h2>
+<div class="gallery">
+  <img src="images/gallery1.jpg">
+  <img src="images/gallery2.jpg">
+  <img src="images/gallery3.jpg">
+</div>
 </section>
 
 <!-- MAP -->
 <section>
-  <h2>Village Location</h2>
-  <iframe
-    height="300"
-    loading="lazy"
-    allowfullscreen
-    src="https://www.google.com/maps?q=Dalanwas%20Mahendragarh%20Haryana&output=embed">
-  </iframe>
+<h2>Village Location</h2>
+<iframe
+  loading="lazy"
+  allowfullscreen
+  src="https://www.google.com/maps?q=Dalanwas%20Mahendragarh%20Haryana&output=embed">
+</iframe>
 </section>
 
 <footer>
-  <p>© 2025 Village Dalanwas, Haryana</p>
+<p>© 2025 Village Dalanwas, Haryana</p>
 </footer>
+
+<!-- SLIDER SCRIPT -->
+<script>
+let index = 0;
+const slides = document.querySelectorAll(".slide");
+
+setInterval(() => {
+  slides[index].classList.remove("active");
+  index = (index + 1) % slides.length;
+  slides[index].classList.add("active");
+}, 4000);
+</script>
 
 </body>
 </html>
