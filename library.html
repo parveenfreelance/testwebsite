@@ -102,6 +102,33 @@ section h2{text-align:center;color:#2c3e50;margin-bottom:15px;}
 /* FOOTER */
 footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
 
+#booksSection {
+  background: linear-gradient(135deg, #fceabb, #f8b500);
+  padding: 30px 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  transition: background 0.5s ease;
+}
+
+/* Optional hover animation for subtle movement */
+#booksSection:hover {
+  background: linear-gradient(135deg, #f8b500, #fceabb);
+}
+
+.books-carousel .book-card {
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.books-carousel .book-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  background: rgba(255,255,255,1);
+}
+
+
 /* RESPONSIVE */
 @media(max-width:1024px){.photo-gallery,.video-gallery{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:600px){.photo-gallery,.video-gallery{grid-template-columns:1fr;} header h1{font-size:28px;} header p{font-size:14px;}}
