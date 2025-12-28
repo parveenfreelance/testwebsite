@@ -18,7 +18,12 @@
 
 <style>
 body{margin:0;font-family:'Roboto',sans-serif;background:#f4f6f9;}
-
+/* SLIDER */
+.slider { position: relative; max-height:400px; overflow: hidden; }
+.slide { display: none; }
+.slide img { width: 100%; height: 400px; object-fit: cover; }
+.active { display: block; transition: opacity 1s ease-in-out; }
+  
 /* HEADER */
 header {
   background: linear-gradient(to right, #2c3e50, #34495e);
@@ -132,6 +137,14 @@ footer {
   </div>
 </div>
 
+  <!-- IMAGE SLIDER -->
+<div class="slider" style="max-width:1000px;margin:20px auto;border-radius:12px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.1);">
+  <div class="slide active"><img src="images/village1.jpg" alt="Library Slide 1"></div>
+  <div class="slide"><img src="images/village2.jpg" alt="Library Slide 2"></div>
+  <div class="slide"><img src="images/village3.jpg" alt="Library Slide 3"></div>
+  <div class="slide"><img src="images/village4.jpg" alt="Library Slide 4"></div>
+</div>
+
 <!-- DESCRIPTION -->
 <section id="descSection">
   <h2 id="descTitle">About the Library</h2>
@@ -180,7 +193,7 @@ footer {
 <!-- CALENDAR -->
 <section id="calendarSection">
   <h2>Upcoming Events Calendar</h2>
-  <div id="libraryCalendar"></div>
+  <div id="libraryCalendar" style="max-width:900px;margin:20px auto;"></div>
 </section>
 
 <!-- GALLERY -->
@@ -298,13 +311,20 @@ const donorChart = new Chart(ctx, {
   },
   options: {responsive:true, plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}}}
 });
-
+</script>
 // FULLCALENDAR
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+<script>
 document.addEventListener('DOMContentLoaded', function() {
-  var calendarEl = document.getElementById('libraryCalendar');
-  var calendar = new FullCalendar.Calendar(calendarEl, {
+  const calendarEl = document.getElementById('libraryCalendar');
+  const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
-    headerToolbar: { left: 'prev,next today', center: 'title', right: 'dayGridMonth,timeGridWeek,timeGridDay' },
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    height: 500,
     events: [
       { title: 'Exam Practice Session', start: '2025-01-10', color:'#e67e22' },
       { title: 'Blood Donation Camp', start: '2025-01-15', color:'#c0392b' },
@@ -312,16 +332,27 @@ document.addEventListener('DOMContentLoaded', function() {
       { title: 'Yoga & Wellness', start: '2025-01-25', color:'#27ae60' },
       { title: 'Cleanliness Drive', start: '2025-01-28', color:'#f39c12' }
     ],
+    dayMaxEvents: true,
+    selectable: true,
+    editable: false,
     eventClick: function(info) {
       alert('Event: ' + info.event.title + '\nDate: ' + info.event.start.toLocaleDateString());
-    },
-    height: 500,
-    editable: false,
-    selectable: true,
-    dayMaxEvents: true
+    }
   });
   calendar.render();
 });
+</script>
+<script>
+// IMAGE SLIDER SCRIPT
+let slideIndex = 0;
+const slides = document.querySelectorAll(".slide");
+function showSlides() {
+  slides.forEach(s => s.classList.remove("active"));
+  slideIndex = (slideIndex + 1) % slides.length;
+  slides[slideIndex].classList.add("active");
+  setTimeout(showSlides, 4000);
+}
+showSlides();
 </script>
 </body>
 </html>
