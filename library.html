@@ -132,6 +132,19 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
   background: rgba(255,255,255,1);
 }
 
+#eventTooltip {
+  position: absolute;
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  display: none;
+  z-index: 9999;
+  pointer-events: none;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  max-width: 260px;
+}
 
 /* RESPONSIVE */
 @media(max-width:1024px){.photo-gallery,.video-gallery{grid-template-columns:repeat(2,1fr);}}
@@ -219,6 +232,8 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
 <section id="calendarSection">
   <h2>Upcoming Events Calendar</h2>
   <div id="libraryCalendar"></div>
+  <!-- Tooltip -->
+<div id="eventTooltip"></div>
 </section>
 
 <!-- LIBRARY GALLERY -->
@@ -328,28 +343,75 @@ const ctx=document.getElementById('donorChart').getContext('2d');
 const donorChart=new Chart(ctx,{type:'bar',data:{labels:['Ramesh','Suresh','Anita','Pooja','Vikas'],datasets:[{label:'Contribution Amount (₹)',data:[5000,3500,3000,2500,2000],backgroundColor:'#e67e22'}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
 
 // FULLCALENDAR
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+
   const calendarEl = document.getElementById('libraryCalendar');
-  if(calendarEl) {
-    const calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+  const tooltip = document.getElementById('eventTooltip');
+
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    height: 520,
+
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek'
+    },
+
+    events: [
+      {
+        title: 'Exam Practice Session',
+        start: '2025-01-10',
+        description: 'Daily mock tests & group discussion for government exams',
+        color: '#e67e22'
       },
-      height: 500,
-      events: [
-        { title: 'Exam Practice Session', start: '2025-01-10', color:'#e67e22' },
-        { title: 'Blood Donation Camp', start: '2025-01-15', color:'#c0392b' },
-        { title: 'Speech Competition', start: '2025-01-20', color:'#2980b9' },
-        { title: 'Yoga & Wellness', start: '2025-01-25', color:'#27ae60' },
-        { title: 'Cleanliness Drive', start: '2025-01-28', color:'#f39c12' }
-      ],
-      dayMaxEvents: true
-    });
-    calendar.render();
-  }
+      {
+        title: 'Blood Donation Camp',
+        start: '2025-01-15',
+        description: 'Village community blood donation camp',
+        color: '#c0392b'
+      },
+      {
+        title: 'Speech Competition',
+        start: '2025-01-20',
+        description: 'Speech competition for students & youth',
+        color: '#2980b9'
+      },
+      {
+        title: 'Yoga & Wellness Day',
+        start: '2025-01-25',
+        description: 'Morning yoga and meditation session',
+        color: '#27ae60'
+      },
+      {
+        title: 'Cleanliness Drive',
+        start: '2025-01-28',
+        description: 'Village cleanliness & awareness drive',
+        color: '#f39c12'
+      }
+    ],
+
+    /* 👇 HOVER EFFECT */
+    eventMouseEnter: function (info) {
+      tooltip.style.display = 'block';
+      tooltip.innerHTML = `
+        <strong>${info.event.title}</strong><br>
+        📅 ${info.event.start.toDateString()}<br>
+        📝 ${info.event.extendedProps.description}
+      `;
+    },
+
+    eventMouseMove: function (info) {
+      tooltip.style.left = (info.jsEvent.pageX + 15) + 'px';
+      tooltip.style.top = (info.jsEvent.pageY + 15) + 'px';
+    },
+
+    eventMouseLeave: function () {
+      tooltip.style.display = 'none';
+    }
+  });
+
+  calendar.render();
 });
 
 // IMAGE SLIDER
