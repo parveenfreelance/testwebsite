@@ -12,6 +12,7 @@ body {
   background: #f4f6f9;
 }
 
+/* HEADER */
 header {
   background: #2c3e50;
   color: white;
@@ -19,6 +20,7 @@ header {
   text-align: center;
 }
 
+/* NAV */
 nav {
   background: #1f2d3d;
   text-align: center;
@@ -31,37 +33,50 @@ nav a {
   font-weight: bold;
 }
 
-.filters {
+/* SECTION TITLES */
+.section-title {
   text-align: center;
-  margin: 20px;
+  margin: 40px 20px 10px;
 }
-.filters button {
-  padding: 10px 15px;
-  border: none;
+.section-title h2 {
+  color: #2c3e50;
+}
+.divider {
+  width: 80px;
+  height: 4px;
   background: #3498db;
-  color: white;
-  margin: 5px;
+  margin: 10px auto;
   border-radius: 5px;
-  cursor: pointer;
-}
-.filters button:hover {
-  background: #2980b9;
 }
 
-/* GALLERY GRID */
-.gallery {
+/* PHOTO GRID */
+.photo-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 15px;
   padding: 20px;
 }
-
-.gallery-item img,
-.gallery-item iframe {
+.photo-gallery img {
   width: 100%;
-  height: 200px;
   border-radius: 10px;
   cursor: pointer;
+  transition: transform 0.3s;
+}
+.photo-gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* VIDEO GRID */
+.video-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+.video-gallery iframe {
+  width: 100%;
+  height: 220px;
+  border-radius: 10px;
 }
 
 /* LIGHTBOX */
@@ -111,7 +126,7 @@ footer {
 
 <header>
   <h1>Dalanwas Village Gallery</h1>
-  <p>Photos & YouTube Videos</p>
+  <p>Photos & Videos of Village Life</p>
 </header>
 
 <nav>
@@ -121,53 +136,29 @@ footer {
   <a href="library.html">Library</a>
 </nav>
 
-<!-- FILTER -->
-<div class="filters">
-  <button onclick="filterItems('all')">All</button>
-  <button onclick="filterItems('photo')">Photos</button>
-  <button onclick="filterItems('video')">Videos</button>
+<!-- PHOTO SECTION -->
+<div class="section-title">
+  <h2>📸 Photo Gallery</h2>
+  <div class="divider"></div>
 </div>
 
-<!-- GALLERY -->
-<div class="gallery">
-
-  <!-- PHOTOS -->
-  <div class="gallery-item photo">
-    <img src="images/village3.jpg" onclick="openLightbox(0)">
-  </div>
-
-  <div class="gallery-item photo">
-    <img src="images/village2.jpg" onclick="openLightbox(1)">
-  </div>
-
-  <div class="gallery-item photo">
-    <img src="images/village1.jpg" onclick="openLightbox(2)">
-  </div>
+<div class="photo-gallery">
+  <img src="images/village1.jpg" onclick="openLightbox(0)">
+  <img src="images/village2.jpg" onclick="openLightbox(1)">
+  <img src="images/village3.jpg" onclick="openLightbox(2)">
+  <img src="images/village1.jpg" onclick="openLightbox(3)">
 </div>
-  <div>
-  <!-- YOUTUBE VIDEOS -->
-  <div class="gallery-item video">
-    <iframe 
-  src="https://www.youtube.com/embed/UuQWqhg6DdA"
-  width="100%"
-  height="220"
-  frameborder="0"
-  allowfullscreen>
-</iframe>
 
-  </div>
+<!-- VIDEO SECTION -->
+<div class="section-title">
+  <h2>🎬 Video Gallery</h2>
+  <div class="divider"></div>
+</div>
 
-  <div class="gallery-item video">
-    <iframe 
-  src="https://www.youtube.com/embed/UuQWqhg6DdA"
-  width="100%"
-  height="220"
-  frameborder="0"
-  allowfullscreen>
-</iframe>
-
-  </div>
-
+<div class="video-gallery">
+  <iframe src="https://www.youtube.com/embed/UuQWqhg6DdA" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/UuQWqhg6DdA" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/UuQWqhg6DdA" allowfullscreen></iframe>
 </div>
 
 <!-- LIGHTBOX -->
@@ -186,7 +177,8 @@ footer {
 const images = [
   "images/village1.jpg",
   "images/village2.jpg",
-  "images/village3.jpg"
+  "images/village3.jpg",
+  "images/village2.jpg"
 ];
 let currentIndex = 0;
 
@@ -205,23 +197,14 @@ function changeSlide(step) {
   document.getElementById("lightboxImg").src = images[currentIndex];
 }
 
-/* Auto slide */
+/* Auto Slide */
 setInterval(() => {
   if (document.getElementById("lightbox").style.display === "flex") {
     changeSlide(1);
   }
 }, 4000);
 
-/* Filter */
-function filterItems(type) {
-  const items = document.querySelectorAll(".gallery-item");
-  items.forEach(item => {
-    item.style.display =
-      type === "all" || item.classList.contains(type) ? "block" : "none";
-  });
-}
-
-/* Keyboard */
+/* Keyboard support */
 document.addEventListener("keydown", e => {
   if (e.key === "Escape") closeLightbox();
   if (e.key === "ArrowRight") changeSlide(1);
