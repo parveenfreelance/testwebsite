@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ===== GLOBAL ===== */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -15,132 +14,116 @@ body {
 
 /* ===== HEADER ===== */
 header {
-  background: linear-gradient(to right, #2c3e50, #34495e);
+  background: linear-gradient(to right, #1f3c88, #274c9c);
   color: white;
   text-align: center;
-  padding: 25px;
+  padding: 20px;
 }
 
 /* ===== NAV ===== */
 nav {
-  background: #1f2d3d;
+  background: #12254f;
   text-align: center;
-  padding: 12px;
+  padding: 10px;
 }
 nav a {
   color: white;
-  margin: 10px;
+  margin: 0 12px;
   text-decoration: none;
   font-weight: bold;
 }
 
-/* ===== SECTION TITLE ===== */
-.section-title {
-  text-align: center;
-  margin: 40px 0 15px;
+/* ===== LANGUAGE TOGGLE ===== */
+.lang-toggle {
+  position: absolute;
+  top: 15px;
+  right: 20px;
 }
-.section-title h2 {
-  color: #2c3e50;
+.lang-toggle button {
+  padding: 6px 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ===== SECTION ===== */
+.section {
+  padding: 30px 20px;
+}
+.section h2 {
+  text-align: center;
+  color: #1f3c88;
 }
 .divider {
-  width: 90px;
+  width: 80px;
   height: 4px;
-  background: #3498db;
-  margin: 10px auto;
-  border-radius: 5px;
+  background: #1f3c88;
+  margin: 10px auto 25px;
 }
 
-/* ===== PHOTO GALLERY (MASONRY) ===== */
+/* ===== PHOTO GRID ===== */
 .photo-gallery {
-  column-count: 4;
-  column-gap: 15px;
-  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
 }
 
-@media (max-width: 1200px) { .photo-gallery { column-count: 3; } }
-@media (max-width: 768px) { .photo-gallery { column-count: 2; } }
-@media (max-width: 480px) { .photo-gallery { column-count: 1; } }
+@media (max-width: 1024px) { .photo-gallery { grid-template-columns: repeat(3,1fr);} }
+@media (max-width: 768px) { .photo-gallery { grid-template-columns: repeat(2,1fr);} }
+@media (max-width: 480px) { .photo-gallery { grid-template-columns: 1fr;} }
 
 .photo-gallery img {
   width: 100%;
-  height: 220px;              /* SAME SIZE */
-  object-fit: cover;          /* NO DISTORTION */
-  margin-bottom: 15px;
-  border-radius: 12px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
   cursor: pointer;
-  break-inside: avoid;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.photo-gallery img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
-
-/* ===== VIDEO GALLERY (2 PER ROW) ===== */
+/* ===== VIDEO GRID ===== */
 .video-gallery {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  padding: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
 }
+
+@media (max-width: 1024px) { .video-gallery { grid-template-columns: repeat(3,1fr);} }
+@media (max-width: 768px) { .video-gallery { grid-template-columns: repeat(2,1fr);} }
+@media (max-width: 480px) { .video-gallery { grid-template-columns: 1fr;} }
 
 .video-gallery iframe {
   width: 100%;
-  height: 240px;
-  border-radius: 12px;
-}
-
-/* Tablet */
-@media (max-width: 768px) {
-  .video-gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-  .video-gallery {
-    grid-template-columns: 1fr;
-  }
-  .video-gallery iframe {
-    height: 200px;
-  }
+  height: 200px;
+  border-radius: 10px;
 }
 
 /* ===== LIGHTBOX ===== */
 .lightbox {
   display: none;
   position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0,0,0,0.9);
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
-
 .lightbox img {
   max-width: 90%;
   max-height: 85%;
 }
-
-.close, .prev, .next {
+.lightbox span {
   position: absolute;
   color: white;
   font-size: 35px;
   cursor: pointer;
-  user-select: none;
 }
-
 .close { top: 20px; right: 30px; }
-.prev { left: 20px; top: 50%; }
-.next { right: 20px; top: 50%; }
+.prev { left: 20px; }
+.next { right: 20px; }
 
 /* ===== FOOTER ===== */
 footer {
-  background: #2c3e50;
+  background: #12254f;
   color: white;
   text-align: center;
   padding: 15px;
@@ -151,8 +134,13 @@ footer {
 <body>
 
 <header>
-  <h1>Dalanwas Village Gallery</h1>
-  <p>Photos & Videos of Village Life</p>
+  <h1 id="title">Dalanwas Village Gallery</h1>
+  <p id="subtitle">Photos & Videos of Village Life</p>
+
+  <div class="lang-toggle">
+    <button onclick="setLang('en')">EN</button>
+    <button onclick="setLang('hi')">हिंदी</button>
+  </div>
 </header>
 
 <nav>
@@ -163,30 +151,33 @@ footer {
 </nav>
 
 <!-- PHOTO SECTION -->
-<div class="section-title">
-  <h2>📸 Photo Gallery</h2>
+<div class="section">
+  <h2 id="photoTitle">Photo Gallery</h2>
   <div class="divider"></div>
-</div>
 
-<div class="photo-gallery">
-  <img src="images/village1.jpg" loading="lazy" onclick="openLightbox(0)">
-  <img src="images/village2.jpg" loading="lazy" onclick="openLightbox(1)">
-  <img src="images/village3.jpg" loading="lazy" onclick="openLightbox(2)">
-  <img src="images/village1.jpg" loading="lazy" onclick="openLightbox(3)">
-  <img src="images/village2.jpg" loading="lazy" onclick="openLightbox(4)">
+  <div class="photo-gallery">
+    <img src="images/village1.jpg" onclick="openLightbox(0)">
+    <img src="images/village2.jpg" onclick="openLightbox(1)">
+    <img src="images/village3.jpg" onclick="openLightbox(2)">
+    <img src="images/village1.jpg" onclick="openLightbox(3)">
+    <img src="images/village2.jpg" onclick="openLightbox(4)">
+    <img src="images/village3.jpg" onclick="openLightbox(5)">
+    <img src="images/village1.jpg" onclick="openLightbox(6)">
+    <img src="images/village2.jpg" onclick="openLightbox(7)">
+  </div>
 </div>
 
 <!-- VIDEO SECTION -->
-<div class="section-title">
-  <h2>🎬 Video Gallery</h2>
+<div class="section">
+  <h2 id="videoTitle">Video Gallery</h2>
   <div class="divider"></div>
-</div>
 
-<div class="video-gallery">
-  <iframe src="https://www.youtube.com/embed/UuQWqhg6DdA" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/UuQWqhg6DdA" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/UuQWqhg6DdA" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/UuQWqhg6DdA" allowfullscreen></iframe>
+  <div class="video-gallery">
+    <iframe src="https://www.youtube.com/embed/UuQWqhg6DdA" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/UuQWqhg6DdA" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/UuQWqhg6DdA" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/UuQWqhg6DdA" allowfullscreen></iframe>
+  </div>
 </div>
 
 <!-- LIGHTBOX -->
@@ -198,48 +189,51 @@ footer {
 </div>
 
 <footer>
-© 2025 Village Dalanwas | Gallery
+© 2025 Village Dalanwas | Haryana
 </footer>
 
 <script>
+/* ===== GALLERY ===== */
 const images = [
-  "images/village1.jpg",
-  "images/village2.jpg",
-  "images/village3.jpg",
-  "images/village4.jpg",
-  "images/village5.jpg"
+  "images/village1.jpg","images/village2.jpg","images/village3.jpg","images/village1.jpg",
+  "images/village3.jpg","images/village1.jpg","images/village2.jpg","images/village1.jpg"
 ];
+let index = 0;
 
-let currentIndex = 0;
-
-function openLightbox(index) {
-  currentIndex = index;
-  document.getElementById("lightbox").style.display = "flex";
-  document.getElementById("lightboxImg").src = images[index];
+function openLightbox(i){
+  index = i;
+  document.getElementById("lightbox").style.display="flex";
+  document.getElementById("lightboxImg").src=images[i];
+}
+function closeLightbox(){
+  document.getElementById("lightbox").style.display="none";
+}
+function changeSlide(step){
+  index=(index+step+images.length)%images.length;
+  document.getElementById("lightboxImg").src=images[index];
 }
 
-function closeLightbox() {
-  document.getElementById("lightbox").style.display = "none";
-}
-
-function changeSlide(step) {
-  currentIndex = (currentIndex + step + images.length) % images.length;
-  document.getElementById("lightboxImg").src = images[currentIndex];
-}
-
-/* Auto slide */
-setInterval(() => {
-  if (document.getElementById("lightbox").style.display === "flex") {
+/* Auto scroll */
+setInterval(()=>{
+  if(document.getElementById("lightbox").style.display==="flex"){
     changeSlide(1);
   }
-}, 4000);
+},4000);
 
-/* Keyboard support */
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape") closeLightbox();
-  if (e.key === "ArrowRight") changeSlide(1);
-  if (e.key === "ArrowLeft") changeSlide(-1);
-});
+/* ===== LANGUAGE ===== */
+function setLang(lang){
+  if(lang==="hi"){
+    title.innerText="डालनवास गांव गैलरी";
+    subtitle.innerText="गांव की तस्वीरें और वीडियो";
+    photoTitle.innerText="फोटो गैलरी";
+    videoTitle.innerText="वीडियो गैलरी";
+  } else {
+    title.innerText="Dalanwas Village Gallery";
+    subtitle.innerText="Photos & Videos of Village Life";
+    photoTitle.innerText="Photo Gallery";
+    videoTitle.innerText="Video Gallery";
+  }
+}
 </script>
 
 </body>
