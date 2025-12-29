@@ -319,6 +319,58 @@ footer {
   transform: translateY(0);
 }
 
+  /* VILLAGE GLIMPSES AUTO SCROLL */
+.village-section {
+  background: #fff;
+  padding: 40px 20px;
+  border-radius: 12px;
+}
+
+.village-slider {
+  overflow: hidden;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.village-track {
+  display: flex;
+  width: max-content;
+  animation: scrollVillage 25s linear infinite;
+}
+
+.village-track img {
+  width: 280px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-right: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* PAUSE ON HOVER */
+.village-slider:hover .village-track {
+  animation-play-state: paused;
+}
+
+/* KEYFRAMES */
+@keyframes scrollVillage {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .village-track img {
+    width: 220px;
+    height: 150px;
+  }
+}
+
+
 
 </style>
 </head>
