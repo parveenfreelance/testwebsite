@@ -370,6 +370,253 @@ footer {
   }
 }
 
+.success-wall {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  padding: 60px 20px;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.success-wall h2 {
+  font-size: 34px;
+  margin-bottom: 5px;
+}
+
+.success-wall .subtitle {
+  opacity: 0.8;
+  margin-bottom: 40px;
+}
+
+.success-track {
+  display: flex;
+  gap: 25px;
+  animation: scrollSuccess 25s linear infinite;
+}
+
+.success-wall:hover .success-track {
+  animation-play-state: paused;
+}
+
+.student-card {
+  min-width: 220px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.student-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+.student-card img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 4px solid #f1c40f;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.student-card h4 {
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+.student-card span {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #f1c40f;
+  color: #000;
+  font-size: 22px;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+@keyframes scrollSuccess {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+  .community-board {
+  background: #f4f6f9;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.community-board h2 {
+  font-size: 32px;
+  color: #2c3e50;
+  margin-bottom: 30px;
+}
+
+.message-slider {
+  max-width: 650px;
+  margin: auto;
+  position: relative;
+}
+
+.message-card {
+  display: none;
+  background: white;
+  padding: 35px 25px;
+  border-radius: 18px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+  animation: fadeSlide 1s ease;
+}
+
+.message-card.active {
+  display: block;
+}
+
+.message-card img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #3498db;
+  margin-bottom: 15px;
+}
+
+.message-card p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.message-card h4 {
+  color: #34495e;
+  font-weight: bold;
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modern-footer {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: white;
+  padding: 50px 20px 20px;
+  position: relative;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  align-items: center;
+}
+
+/* BRAND */
+.footer-brand h3 {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+.footer-brand p {
+  margin: 4px 0;
+  opacity: 0.85;
+}
+.footer-brand .tagline {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* LINKS */
+.footer-links h4,
+.footer-social h4 {
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+.footer-links a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin: 6px 0;
+  opacity: 0.85;
+  transition: all 0.3s;
+}
+.footer-links a:hover {
+  opacity: 1;
+  transform: translateX(6px);
+}
+
+/* SOCIAL */
+.footer-social .social {
+  display: inline-flex;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  color: white;
+  font-size: 20px;
+  transition: all 0.4s;
+}
+
+.social.facebook { background: #3b5998; }
+.social.instagram {
+  background: radial-gradient(circle at 30% 30%, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+}
+
+.footer-social .social:hover {
+  transform: translateY(-6px) scale(1.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* BOTTOM */
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* SCROLL TOP */
+.scroll-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  background: #f1c40f;
+  color: #000;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  transition: all 0.3s;
+}
+
+.scroll-top:hover {
+  transform: scale(1.1);
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .footer-brand, .footer-links, .footer-social {
+    text-align: center;
+  }
+}
 
 
 </style>
@@ -515,6 +762,77 @@ Education is a priority in Dalanwas. The Baba Sawanth Nath Library supports stud
 preparing for competitive, engineering, medical, and government examinations.
 </p>
 </section>
+<section class="success-wall">
+  <h2>🎓 Student Success Wall</h2>
+  <p class="subtitle">Pride of Dalanwas Village</p>
+
+  <div class="success-track">
+
+    <div class="student-card">
+      <img src="images/student1.jpg">
+      <h4>Rohit Yadav</h4>
+      <span>SSC GD – 2024</span>
+      <div class="badge">🏆</div>
+    </div>
+
+    <div class="student-card">
+      <img src="images/student2.jpg">
+      <h4>Pooja Sharma</h4>
+      <span>Haryana Police</span>
+      <div class="badge">⭐</div>
+    </div>
+
+    <div class="student-card">
+      <img src="images/student3.jpg">
+      <h4>Vikas Kumar</h4>
+      <span>Army (GD)</span>
+      <div class="badge">🎖️</div>
+    </div>
+
+    <div class="student-card">
+      <img src="images/student4.jpg">
+      <h4>Anita</h4>
+      <span>Clerk Selection</span>
+      <div class="badge">🏅</div>
+    </div>
+
+  </div>
+</section>
+
+  <section class="community-board">
+  <h2>💬 Community Message Board</h2>
+
+  <div class="message-slider">
+
+    <div class="message-card active">
+      <img src="images/sarpanch.jpg">
+      <p>
+        “This library is the backbone of our village’s education system.
+        Every child here dreams bigger.”
+      </p>
+      <h4>– Village Sarpanch</h4>
+    </div>
+
+    <div class="message-card">
+      <img src="images/teacher.jpg">
+      <p>
+        “Students here show discipline, dedication and hunger to succeed.
+        Baba Sawanth Nath Library makes it possible.”
+      </p>
+      <h4>– Senior Teacher</h4>
+    </div>
+
+    <div class="message-card">
+      <img src="images/army.jpg">
+      <p>
+        “From this village to serving the nation — education changed my life.”
+      </p>
+      <h4>– Indian Army Personnel</h4>
+    </div>
+
+  </div>
+</section>
+
 
 <!-- GALLERY -->
 <section class="village-section">
@@ -546,21 +864,58 @@ src="https://www.google.com/maps?q=Dalanwas%20Mahendragarh%20Haryana&output=embe
 </iframe>
 </section>
 
-<footer>
-  <p>© 2025 Village Dalanwas | Haryana, @Developed By - Parveen Lamba</p>
+<footer class="modern-footer">
 
-  <div style="margin-top:8px;">
-    <a href="https://www.facebook.com/" target="_blank"
-       style="color:white;margin:0 10px;text-decoration:none;">
-      📘 Facebook
-    </a>
+  <div class="footer-content">
 
-    <a href="https://www.instagram.com/" target="_blank"
-       style="color:white;margin:0 10px;text-decoration:none;">
-      📸 Instagram
-    </a>
+    <!-- LEFT -->
+    <div class="footer-brand">
+      <h3>🌿 Village Dalanwas</h3>
+      <p>Haryana, India</p>
+      <p class="tagline">
+        Education • Community • Progress
+      </p>
+    </div>
+
+    <!-- CENTER -->
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="library.html">Library</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="events.html">Events</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="footer-social">
+      <h4>Connect With Us</h4>
+
+      <a href="https://www.facebook.com/" target="_blank" class="social facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+
+      <a href="https://www.instagram.com/" target="_blank" class="social instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+
   </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="footer-bottom">
+    <p>
+      © <span id="year"></span> Village Dalanwas | Haryana  
+      <br>
+      Developed by <b>Parveen Lamba</b>
+    </p>
+  </div>
+
+  <!-- SCROLL TOP -->
+  <button class="scroll-top" onclick="scrollToTop()">↑</button>
+
 </footer>
+
 
   <script>
 let index = 0;
@@ -770,6 +1125,32 @@ function animateOnScroll() {
 window.addEventListener('scroll', animateOnScroll);
 window.addEventListener('load', animateOnScroll);
 </script>
+
+  <script>
+let currentMessage = 0;
+const messages = document.querySelectorAll('.message-card');
+
+setInterval(() => {
+  messages[currentMessage].classList.remove('active');
+  currentMessage = (currentMessage + 1) % messages.length;
+  messages[currentMessage].classList.add('active');
+}, 5000);
+</script>
+<script>
+document.getElementById("year").innerText = new Date().getFullYear();
+
+/* Scroll Top Button */
+const scrollBtn = document.querySelector(".scroll-top");
+
+window.addEventListener("scroll", () => {
+  scrollBtn.style.display = window.scrollY > 300 ? "block" : "none";
+});
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+</script>
+
 
 </body>
 </html>
