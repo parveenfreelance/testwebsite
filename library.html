@@ -511,7 +511,7 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
 <header>
   <canvas id="headerCanvas"></canvas>
   <div class="header-content">
-    <h1 id="heroTitle">Baba Sawanth Nath Library</h1>
+    <p id="heroTitle">Baba Sawanth Nath Library</p>
     <p>Village Dalanwas, Haryana</p>
     <div id="top-info" style="font-size:14px;">
   🌤️ <span id="weather">Loading weather...</span> |
@@ -843,8 +843,6 @@ window.addEventListener('scroll', () => {sections.forEach(sec => {if(sec.getBoun
 const counters=document.querySelectorAll('.counter');
 counters.forEach(counter=>{counter.innerText='0'; const updateCounter=()=>{const target=+counter.getAttribute('data-target'); const current=+counter.innerText; const inc=target/200; if(current<target){counter.innerText=Math.ceil(current+inc); setTimeout(updateCounter,10);} else{counter.innerText=target;}}; updateCounter();});
 
-
-/* ===== CALENDAR + TOOLTIP ===== */
 /* ===== CALENDAR + TOOLTIP ===== */
 document.addEventListener('DOMContentLoaded', () => {
   const tooltip = document.getElementById('eventTooltip');
