@@ -147,10 +147,56 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
   line-height: 1.4;
 }
 
+/* EVENTS + CALENDAR SPLIT */
+.events-wrap{
+  display:grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap:25px;
+  align-items:flex-start;
+}
+
+.event-list{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.event-item{
+  background:#fef9f0;
+  border-left:6px solid #f39c12;
+  padding:15px;
+  border-radius:10px;
+  box-shadow:0 6px 15px rgba(0,0,0,0.08);
+}
+
+.event-item h4{
+  margin:0 0 6px;
+  color:#2c3e50;
+}
+
+.event-item .date{
+  font-weight:bold;
+  color:#e67e22;
+  margin-bottom:6px;
+}
+
+.event-item p{
+  margin:0;
+  font-size:14px;
+  line-height:1.5;
+}
+
+/* Responsive */
+@media(max-width:900px){
+  .events-wrap{
+    grid-template-columns:1fr;
+  }
+}
 
 /* RESPONSIVE */
 @media(max-width:1024px){.photo-gallery,.video-gallery{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:600px){.photo-gallery,.video-gallery{grid-template-columns:1fr;} header h1{font-size:28px;} header p{font-size:14px;}}
+  
 </style>
 </head>
 
@@ -230,23 +276,50 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
   </div>
 </section>
 
-<!-- CALENDAR -->
+<!-- EVENTS & CALENDAR -->
 <section>
-<h2>Events & Calendar</h2>
-<div class="events-wrap">
+  <h2>Events & Calendar</h2>
 
-  <!-- LEFT EVENTS -->
-  <div class="event-list">
-    <div class="event-item"><span>10 Feb 2025</span><br>Blood Donation Camp</div>
-    <div class="event-item"><span>18 Feb 2025</span><br>Mock Exam</div>
-    <div class="event-item"><span>25 Feb 2025</span><br>Yoga Session</div>
+  <div class="events-wrap">
+
+    <!-- LEFT : EVENT DETAILS -->
+    <div class="event-list">
+
+      <div class="event-item">
+        <div class="date">📅 10 Feb 2025</div>
+        <h4>Blood Donation Camp</h4>
+        <p>
+          Community blood donation drive organized by villagers to promote
+          social responsibility and health awareness.
+        </p>
+      </div>
+
+      <div class="event-item">
+        <div class="date">📅 18 Feb 2025</div>
+        <h4>Mock Examination</h4>
+        <p>
+          Practice examination for government job aspirants to evaluate
+          preparation level and exam strategy.
+        </p>
+      </div>
+
+      <div class="event-item">
+        <div class="date">📅 25 Feb 2025</div>
+        <h4>Yoga & Wellness Session</h4>
+        <p>
+          Morning yoga and meditation session focusing on mental health,
+          discipline, and concentration for students.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- RIGHT : CALENDAR -->
+    <div id="libraryCalendar"></div>
+
   </div>
-
-  <!-- RIGHT CALENDAR -->
-  <div id="libraryCalendar"></div>
-
-</div>
 </section>
+
 
 <!-- LIBRARY GALLERY -->
 <section id="gallerySection">
@@ -356,23 +429,72 @@ const ctx=document.getElementById('donorChart').getContext('2d');
 const donorChart=new Chart(ctx,{type:'bar',data:{labels:['Ramesh','Suresh','Anita','Pooja','Vikas'],datasets:[{label:'Contribution Amount (₹)',data:[5000,3500,3000,2500,2000],backgroundColor:'#e67e22'}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
 
 /* ===== CALENDAR + TOOLTIP ===== */
-document.addEventListener('DOMContentLoaded',()=>{
-const tip=document.getElementById('eventTooltip');
-const cal=new FullCalendar.Calendar(document.getElementById('libraryCalendar'),{
-initialView:'dayGridMonth',
-events:[
-{title:'Blood Donation',start:'2025-02-10'},
-{title:'Mock Exam',start:'2025-02-18'},
-{title:'Yoga',start:'2025-02-25'}
-],
-eventMouseEnter(info){
-tip.style.display='block';
-tip.innerText=info.event.title;
-},
-eventMouseLeave(){tip.style.display='none'}
+/* ===== CALENDAR + TOOLTIP ===== */
+document.addEventListener('DOMContentLoaded', () => {
+  const tooltip = document.getElementById('eventTooltip');
+
+  const calendar = new FullCalendar.Calendar(
+    document.getElementById('libraryCalendar'),
+    {
+      initialView: 'dayGridMonth',
+      height: 'auto',
+
+      events: [
+        {
+          title: 'Blood Donation Camp',
+          start: '2025-02-10',
+          description: 'Community blood donation drive'
+        },
+        {
+          title: 'Mock Examination',
+          start: '2025-02-18',
+          description: 'Practice exam for govt job aspirants'
+        },
+        {
+          title: 'Yoga Session',
+          start: '2025-02-25',
+          description: 'Yoga & wellness session for students'
+        }
+      ],
+
+      eventMouseEnter(info) {
+        tooltip.style.display = 'block';
+        tooltip.innerHTML = `
+          <strong>${info.event.title}</strong><br>
+          📅 ${info.event.start.toDateString()}<br>
+          📝 ${info.event.extendedProps.description}
+        `;
+      },
+
+      eventMouseLeave() {
+        tooltip.style.display = 'none';
+      }
+    }
+  );
+
+  calendar.render();
+
+  /* Tooltip follow mouse */
+  document.addEventListener('mousemove', (e) => {
+    if (tooltip.style.display === 'block') {
+      let x = e.clientX + 15;
+      let y = e.clientY + 15;
+
+      const rect = tooltip.getBoundingClientRect();
+
+      if (x + rect.width > window.innerWidth) {
+        x = e.clientX - rect.width - 15;
+      }
+      if (y + rect.height > window.innerHeight) {
+        y = e.clientY - rect.height - 15;
+      }
+
+      tooltip.style.left = x + 'px';
+      tooltip.style.top = y + 'px';
+    }
+  });
 });
-cal.render();
-});
+
 
 // IMAGE SLIDER
 let slideIndex=0;
