@@ -193,6 +193,29 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
   }
 }
 
+  /* LOOKER STUDIO DASHBOARD */
+.looker-wrapper{
+  width:100%;
+  height:500px;
+  background:#ffffff;
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.15);
+  overflow:hidden;
+}
+
+.looker-wrapper iframe{
+  width:100%;
+  height:100%;
+}
+
+/* Mobile optimization */
+@media(max-width:768px){
+  .looker-wrapper{
+    height:400px;
+  }
+}
+
+
 /* RESPONSIVE */
 @media(max-width:1024px){.photo-gallery,.video-gallery{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:600px){.photo-gallery,.video-gallery{grid-template-columns:1fr;} header h1{font-size:28px;} header p{font-size:14px;}}
@@ -284,7 +307,8 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
 
     <!-- LEFT : EVENT DETAILS -->
     <div class="event-list">
-
+      <div class="event-item">
+      </div>
       <div class="event-item">
         <div class="date">📅 10 Feb 2025</div>
         <h4>Blood Donation Camp</h4>
@@ -359,8 +383,18 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
 <!-- DONORS -->
 <section class="donors" id="donorsSection">
   <h2>Top Donors & Contributions</h2>
-  <canvas id="donorChart"></canvas>
+
+  <div class="looker-wrapper">
+    <iframe
+      src="https://lookerstudio.google.com/embed/reporting/448798dc-b0fa-4ebe-b67b-9b92653d8636/page/p_jtql68c4xd"
+      frameborder="0"
+      style="border:0"
+      allowfullscreen
+      loading="lazy">
+    </iframe>
+  </div>
 </section>
+
 
 <!-- FOOTER -->
 <footer>
@@ -424,9 +458,6 @@ window.addEventListener('scroll', () => {sections.forEach(sec => {if(sec.getBoun
 const counters=document.querySelectorAll('.counter');
 counters.forEach(counter=>{counter.innerText='0'; const updateCounter=()=>{const target=+counter.getAttribute('data-target'); const current=+counter.innerText; const inc=target/200; if(current<target){counter.innerText=Math.ceil(current+inc); setTimeout(updateCounter,10);} else{counter.innerText=target;}}; updateCounter();});
 
-// DONOR CHART
-const ctx=document.getElementById('donorChart').getContext('2d');
-const donorChart=new Chart(ctx,{type:'bar',data:{labels:['Ramesh','Suresh','Anita','Pooja','Vikas'],datasets:[{label:'Contribution Amount (₹)',data:[5000,3500,3000,2500,2000],backgroundColor:'#e67e22'}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
 
 /* ===== CALENDAR + TOOLTIP ===== */
 /* ===== CALENDAR + TOOLTIP ===== */
