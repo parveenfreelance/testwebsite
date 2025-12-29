@@ -133,18 +133,20 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
 }
 
 #eventTooltip {
-  position: absolute;
-  background: rgba(0,0,0,0.85);
+  position: fixed; /* IMPORTANT */
+  background: rgba(0,0,0,0.9);
   color: #fff;
   padding: 10px 14px;
   border-radius: 8px;
   font-size: 14px;
   display: none;
-  z-index: 9999;
+  z-index: 999999; /* ABOVE EVERYTHING */
   pointer-events: none;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
-  max-width: 260px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+  max-width: 280px;
+  line-height: 1.4;
 }
+
 
 /* RESPONSIVE */
 @media(max-width:1024px){.photo-gallery,.video-gallery{grid-template-columns:repeat(2,1fr);}}
@@ -232,8 +234,6 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
 <section id="calendarSection">
   <h2>Upcoming Events Calendar</h2>
   <div id="libraryCalendar"></div>
-  <!-- Tooltip -->
-<div id="eventTooltip"></div>
 </section>
 
 <!-- LIBRARY GALLERY -->
@@ -281,7 +281,8 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
 <footer>
 <p>© 2025 Village Dalanwas, Haryana | Follow us on <i class="fab fa-facebook"></i> Facebook | <i class="fab fa-instagram"></i> Instagram</p>
 </footer>
-
+<!-- Tooltip -->
+<div id="eventTooltip"></div>
 <!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
 <script>
@@ -393,22 +394,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* 👇 HOVER EFFECT */
     eventMouseEnter: function (info) {
-      tooltip.style.display = 'block';
-      tooltip.innerHTML = `
-        <strong>${info.event.title}</strong><br>
-        📅 ${info.event.start.toDateString()}<br>
-        📝 ${info.event.extendedProps.description}
-      `;
-    },
+  const tooltip = document.getElementById('eventTooltip');
 
-    eventMouseMove: function (info) {
-      tooltip.style.left = (info.jsEvent.pageX + 15) + 'px';
-      tooltip.style.top = (info.jsEvent.pageY + 15) + 'px';
-    },
+  tooltip.style.display = 'block';
+  tooltip.innerHTML = `
+    <strong>${info.event.title}</strong><br>
+    📅 ${info.event.start.toDateString()}<br>
+    📝 ${info.event.extendedProps.description}
+  `;
+},
 
-    eventMouseLeave: function () {
-      tooltip.style.display = 'none';
-    }
+eventMouseMove: function (info) {
+  const tooltip = document.getElementById('eventTooltip');
+  const padding = 20;
+
+  let x = info.jsEvent.clientX + padding;
+  let y = info.jsEvent.clientY + padding;
+
+  const tooltipRect = tooltip.getBoundingClientRect();
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
+
+  /* Prevent overflow right */
+  if (x + tooltipRect.width > screenWidth) {
+    x = info.jsEvent.clientX - tooltipRect.width - padding;
+  }
+
+  /* Prevent overflow bottom */
+  if (y + tooltipRect.height > screenHeight) {
+    y = info.jsEvent.clientY - tooltipRect.height - padding;
+  }
+
+  tooltip.style.left = x + 'px';
+  tooltip.style.top = y + 'px';
+},
+
+eventMouseLeave: function () {
+  document.getElementById('eventTooltip').style.display = 'none';
+}
   });
 
   calendar.render();
