@@ -344,42 +344,23 @@ const ctx=document.getElementById('donorChart').getContext('2d');
 const donorChart=new Chart(ctx,{type:'bar',data:{labels:['Ramesh','Suresh','Anita','Pooja','Vikas'],datasets:[{label:'Contribution Amount (₹)',data:[5000,3500,3000,2500,2000],backgroundColor:'#e67e22'}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
 
 /* ===== CALENDAR + TOOLTIP ===== */
-document.addEventListener('DOMContentLoaded', function () {
-  const tooltip = document.getElementById('eventTooltip');
-
-  document.addEventListener('mousemove', function (e) {
-    if (tooltip.style.display === 'block') {
-      let x = e.clientX + 20;
-      let y = e.clientY + 20;
-
-      const rect = tooltip.getBoundingClientRect();
-      if (x + rect.width > window.innerWidth) x -= rect.width + 40;
-      if (y + rect.height > window.innerHeight) y -= rect.height + 40;
-
-      tooltip.style.left = x + 'px';
-      tooltip.style.top = y + 'px';
-    }
-  });
-
-  const calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
-    initialView: 'dayGridMonth',
-    events: [
-      { title: 'Blood Donation Camp', start: '2025-02-10', description: 'Community health drive' },
-      { title: 'Library Exam', start: '2025-02-18', description: 'Mock test for aspirants' },
-      { title: 'Yoga Session', start: '2025-02-25', description: 'Morning wellness program' }
-    ],
-    eventMouseEnter(info) {
-      tooltip.style.display = 'block';
-      tooltip.innerHTML = `<strong>${info.event.title}</strong><br>${info.event.extendedProps.description}`;
-    },
-    eventMouseLeave() {
-      tooltip.style.display = 'none';
-    }
-  });
-
-  calendar.render();
+document.addEventListener('DOMContentLoaded',()=>{
+const tip=document.getElementById('eventTooltip');
+const cal=new FullCalendar.Calendar(document.getElementById('libraryCalendar'),{
+initialView:'dayGridMonth',
+events:[
+{title:'Blood Donation',start:'2025-02-10'},
+{title:'Mock Exam',start:'2025-02-18'},
+{title:'Yoga',start:'2025-02-25'}
+],
+eventMouseEnter(info){
+tip.style.display='block';
+tip.innerText=info.event.title;
+},
+eventMouseLeave(){tip.style.display='none'}
 });
-
+cal.render();
+});
 
 // IMAGE SLIDER
 let slideIndex=0;
