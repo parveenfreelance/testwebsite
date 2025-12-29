@@ -228,6 +228,107 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
   height:100%;
 }
 
+/* REVIEWS SECTION */
+.reviews-section {
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  padding: 60px 20px;
+  text-align: center;
+  border-radius: 12px;
+}
+
+.reviews-section h2 {
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+/* SLIDER */
+.review-slider {
+  position: relative;
+  max-width: 700px;
+  margin: auto;
+}
+
+/* CARD */
+.review-card {
+  display: none;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  animation: fadeSlide 0.8s ease;
+}
+
+.review-card.active {
+  display: block;
+}
+
+/* IMAGE */
+.review-card img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #1f3c88;
+  margin-bottom: 15px;
+}
+
+/* TEXT */
+.review-card h4 {
+  margin: 8px 0 5px;
+  color: #1f3c88;
+}
+
+.stars {
+  color: #f1c40f;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.review-card p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* DOTS */
+.review-dots {
+  margin-top: 20px;
+}
+
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 5px;
+  background: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #1f3c88;
+}
+
+/* ANIMATION */
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .review-card {
+    padding: 20px;
+  }
+}
+
+
 /* Mobile optimization */
 @media(max-width:768px){
   .looker-wrapper{
@@ -399,6 +500,53 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
   <img src="images/upi-qr.png" alt="UPI QR Code">
 </section>
 
+<!-- REVIEWS / TESTIMONIALS -->
+<section class="reviews-section" id="reviewsSection">
+  <h2>What People Say About Our Library</h2>
+
+  <div class="review-slider">
+
+    <div class="review-card active">
+      <img src="images/review1.jpg" alt="Reviewer">
+      <h4>Ramesh Kumar</h4>
+      <div class="stars">★★★★★</div>
+      <p>
+        Baba Sawanth Nath Library has completely changed my preparation journey.
+        Peaceful environment and quality books helped me crack my exam.
+      </p>
+    </div>
+
+    <div class="review-card">
+      <img src="images/review2.jpg" alt="Reviewer">
+      <h4>Pooja Sharma</h4>
+      <div class="stars">★★★★★</div>
+      <p>
+        Best community library in the region. Events like mock exams and yoga
+        sessions are extremely helpful for students.
+      </p>
+    </div>
+
+    <div class="review-card">
+      <img src="images/review3.jpg" alt="Reviewer">
+      <h4>Vikas Yadav</h4>
+      <div class="stars">★★★★★</div>
+      <p>
+        Very disciplined and positive atmosphere. I highly recommend this
+        library for competitive exam aspirants.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- DOTS -->
+  <div class="review-dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+</section>
+
+
 <!-- DONORS -->
 <section class="donors" id="donorsSection">
   <h2>Top Donors & Contributions</h2>
@@ -559,5 +707,34 @@ function openLightbox(i){currentImage=i;document.getElementById("lightbox").styl
 function closeLightbox(){document.getElementById("lightbox").style.display="none";}
 function changeSlide(step){currentImage=(currentImage+step+galleryImages.length)%galleryImages.length;document.getElementById("lightboxImg").src=galleryImages[currentImage];}
 </script>
+<script>
+/* REVIEW SLIDER */
+let reviewIndex = 0;
+const reviews = document.querySelectorAll(".review-card");
+const dots = document.querySelectorAll(".dot");
+
+function showReview(index) {
+  reviews.forEach(r => r.classList.remove("active"));
+  dots.forEach(d => d.classList.remove("active"));
+
+  reviews[index].classList.add("active");
+  dots[index].classList.add("active");
+}
+
+function autoReviews() {
+  reviewIndex = (reviewIndex + 1) % reviews.length;
+  showReview(reviewIndex);
+}
+
+dots.forEach((dot, i) => {
+  dot.addEventListener("click", () => {
+    reviewIndex = i;
+    showReview(reviewIndex);
+  });
+});
+
+setInterval(autoReviews, 5000);
+</script>
+
 </body>
 </html>
