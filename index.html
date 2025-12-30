@@ -370,6 +370,7 @@ footer {
   }
 }
 
+/* Success wall  */
 .success-wall {
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   padding: 60px 20px;
@@ -380,19 +381,19 @@ footer {
 
 .success-wall h2 {
   font-size: 34px;
-  margin-bottom: 5px;
   color: #f1c40f;
 }
 
 .success-wall .subtitle {
-  opacity: 0.8;
+  opacity: 0.85;
   margin-bottom: 40px;
 }
 
 .success-track {
   display: flex;
   gap: 25px;
-  animation: scrollSuccess 25s linear infinite;
+  width: max-content;
+  animation: scrollSuccess 28s linear infinite;
 }
 
 .success-wall:hover .success-track {
@@ -426,7 +427,6 @@ footer {
 
 .student-card h4 {
   margin: 5px 0;
-  font-size: 18px;
 }
 
 .student-card span {
@@ -443,6 +443,12 @@ footer {
   font-size: 22px;
   padding: 8px;
   border-radius: 50%;
+}
+
+/* LOOP KEYFRAMES */
+@keyframes scrollSuccess {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 @keyframes scrollSuccess {
@@ -644,6 +650,7 @@ footer {
 
 <nav>
   <a href="index.html">Home</a>
+  <a href="about.html">About</a>
   <a href="gallery.html">Gallery</a>
   <a href="events.html">Events</a>
   <a href="library.html">Library</a>
@@ -657,7 +664,7 @@ footer {
     A progressive village of Haryana known for education, unity, culture and development.
   </p>
   <a class="btn" href="gallery.html" id="heroBtn1">View Gallery</a>
-  <a class="btn" href="library.html" id="heroBtn2">Village Library</a>
+  <a class="btn" href="library.html" id="heroBtn2">Baba Sawanth Nath Library</a>
 </div>
   <!-- NOTICE -->
 <div class="notice-bar">
@@ -764,15 +771,16 @@ preparing for competitive, engineering, medical, and government examinations.
 </p>
 </section>
   
-<section class="success-wall">
+<!-- Pride  -->
+  <section class="success-wall">
   <h2>🎓 Pride of Dalanwas Village</h2>
   <p class="subtitle">Inspiring journeys of people who made our village proud.</p>
 
-  <div class="success-track">
+  <div class="success-track" id="successTrack">
 
     <div class="student-card">
-      <img src="images/student1.jpg">
-      <h4>Rohit Yadav</h4>
+      <img src="images/diyara.jpg">
+      <h4>Diyara Lamba</h4>
       <span>SSC GD – 2024</span>
       <div class="badge">🏆</div>
     </div>
@@ -787,7 +795,7 @@ preparing for competitive, engineering, medical, and government examinations.
     <div class="student-card">
       <img src="images/student3.jpg">
       <h4>Vikas Kumar</h4>
-      <span>Army (GD)</span>
+      <span>Indian Army (GD)</span>
       <div class="badge">🎖️</div>
     </div>
 
@@ -798,20 +806,6 @@ preparing for competitive, engineering, medical, and government examinations.
       <div class="badge">🏅</div>
     </div>
 
-    <div class="student-card">
-      <img src="images/student4.jpg">
-      <h4>Anita</h4>
-      <span>Clerk Selection</span>
-      <div class="badge">🏅</div>
-    </div>
-
-    <div class="student-card">
-      <img src="images/student4.jpg">
-      <h4>Anita</h4>
-      <span>Clerk Selection</span>
-      <div class="badge">🏅</div>
-    </div>
-    
   </div>
 </section>
 
@@ -886,7 +880,7 @@ src="https://www.google.com/maps?q=Dalanwas%20Mahendragarh%20Haryana&output=embe
 
     <!-- LEFT -->
     <div class="footer-brand">
-      <h3>🌿 Village Dalanwas</h3>
+      <h3>🌿 Smart Village Dalanwas</h3>
       <p>Haryana, India</p>
       <p class="tagline">
         Education • Community • Progress
@@ -1167,6 +1161,30 @@ function scrollToTop() {
 }
 </script>
 
+  <script>
+/* ===== INFINITE LOOP ===== */
+const track = document.getElementById("successTrack");
+const cards = [...track.children];
+
+// Duplicate once for seamless loop
+cards.forEach(card => {
+  track.appendChild(card.cloneNode(true));
+});
+
+/* ===== CONFETTI ON HOVER ===== */
+track.querySelectorAll(".student-card").forEach(card => {
+  card.addEventListener("mouseenter", () => {
+    confetti({
+      particleCount: 40,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+  });
+});
+</script>
+
+<!-- CONFETTI CDN -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 </body>
 </html>
