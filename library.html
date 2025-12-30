@@ -497,6 +497,85 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
   }
 }
 
+.success-wall {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  padding: 60px 20px;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.success-wall h2 {
+  font-size: 34px;
+  margin-bottom: 5px;
+}
+
+.success-wall .subtitle {
+  opacity: 0.8;
+  margin-bottom: 40px;
+}
+
+.success-track {
+  display: flex;
+  gap: 25px;
+  animation: scrollSuccess 25s linear infinite;
+}
+
+.success-wall:hover .success-track {
+  animation-play-state: paused;
+}
+
+.student-card {
+  min-width: 220px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.student-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+.student-card img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 4px solid #f1c40f;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.student-card h4 {
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+.student-card span {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #f1c40f;
+  color: #000;
+  font-size: 22px;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+@keyframes scrollSuccess {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
 
 /* RESPONSIVE */
 @media(max-width:1024px){.photo-gallery,.video-gallery{grid-template-columns:repeat(2,1fr);}}
@@ -667,6 +746,58 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
   <p id="donateText">Your donation helps us maintain books, host events, and support students.</p>
   <p>UPI ID: <b id="upiId">babasawanthnath@upi</b></p>
   <img src="images/upi-qr.png" alt="UPI QR Code">
+</section>
+
+  <!-- Pride  -->
+  <section class="success-wall">
+  <h2>🎓 Pride of Baba Sawanth Nath Library</h2>
+  <p class="subtitle">Success stories born from books and discipline..</p>
+
+  <div class="success-track">
+
+    <div class="student-card">
+      <img src="images/student1.jpg">
+      <h4>Rohit Yadav</h4>
+      <span>SSC GD – 2024</span>
+      <div class="badge">🏆</div>
+    </div>
+
+    <div class="student-card">
+      <img src="images/student2.jpg">
+      <h4>Pooja Sharma</h4>
+      <span>Haryana Police</span>
+      <div class="badge">⭐</div>
+    </div>
+
+    <div class="student-card">
+      <img src="images/student3.jpg">
+      <h4>Vikas Kumar</h4>
+      <span>Army (GD)</span>
+      <div class="badge">🎖️</div>
+    </div>
+
+    <div class="student-card">
+      <img src="images/student4.jpg">
+      <h4>Anita</h4>
+      <span>Clerk Selection</span>
+      <div class="badge">🏅</div>
+    </div>
+
+    <div class="student-card">
+      <img src="images/student4.jpg">
+      <h4>Anita</h4>
+      <span>Clerk Selection</span>
+      <div class="badge">🏅</div>
+    </div>
+
+    <div class="student-card">
+      <img src="images/student4.jpg">
+      <h4>Anita</h4>
+      <span>Clerk Selection</span>
+      <div class="badge">🏅</div>
+    </div>
+    
+  </div>
 </section>
 
 <!-- REVIEWS / TESTIMONIALS -->
