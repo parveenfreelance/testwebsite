@@ -497,38 +497,37 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
   }
 }
 
+/* Success wall  */
 .success-wall {
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  padding: 50px 20px;
+  padding: 60px 20px;
   text-align: center;
+  color: white;
   overflow: hidden;
 }
 
 .success-wall h2 {
-  font-size: 30px;
-  margin-bottom: 30px;
+  font-size: 34px;
   color: #f1c40f;
 }
 
-/* SLIDER */
-.success-slider {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
+.success-wall .subtitle {
+  opacity: 0.85;
+  margin-bottom: 40px;
 }
 
 .success-track {
   display: flex;
+  gap: 25px;
   width: max-content;
-  animation: scrollSuccess 25s linear infinite;
+  animation: scrollSuccess 28s linear infinite;
 }
 
-.success-slider:hover .success-track {
+.success-wall:hover .success-track {
   animation-play-state: paused;
 }
 
-/* CARD */
-.success-card {
+.student-card {
   min-width: 220px;
   background: rgba(255,255,255,0.12);
   backdrop-filter: blur(12px);
@@ -539,12 +538,12 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
   transition: transform 0.4s, box-shadow 0.4s;
 }
 
-.success-card:hover {
+.student-card:hover {
   transform: translateY(-10px) scale(1.05);
   box-shadow: 0 15px 40px rgba(0,0,0,0.5);
 }
 
-.success-card img {
+.student-card img {
   width: 110px;
   height: 110px;
   border-radius: 50%;
@@ -553,17 +552,16 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
   margin-bottom: 10px;
 }
 
-.success-card h4 {
+.student-card h4 {
   margin: 5px 0;
-  font-size: 18px;
 }
 
-.success-card span {
+.student-card span {
   font-size: 14px;
   opacity: 0.85;
 }
 
-  .badge {
+.badge {
   position: absolute;
   top: -10px;
   right: -10px;
@@ -574,22 +572,12 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
   border-radius: 50%;
 }
 
-/* ANIMATION */
+/* LOOP KEYFRAMES */
 @keyframes scrollSuccess {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
-/* MOBILE */
-@media(max-width:600px) {
-  .success-card {
-    min-width: 220px;
-  }
-}
 
 
 
@@ -766,73 +754,39 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
 
   <!-- Pride  -->
   <section class="success-wall">
-  <h2>🌟 Student Success Wall</h2>
+  <h2>🎓 Student Success Wall</h2>
+  <p class="subtitle">Success stories born from books and discipline.</p>
 
-  <div class="success-slider">
-    <div class="success-track">
+  <div class="success-track" id="successTrack">
 
-      <!-- CARD 1 -->
-      <div class="success-card">
-        <img src="images/student1.jpg">
-        <h4>Rahul Kumar</h4>
-        <p>Selected in SSC CGL</p>
-        <div class="badge">🏆</div>
-      </div>
-
-      <!-- CARD 2 -->
-      <div class="success-card">
-        <img src="images/student2.jpg">
-        <h4>Neha Sharma</h4>
-        <p>Cleared Banking Exams</p>
-        <div class="badge">🏆</div>
-      </div>
-
-      <!-- CARD 3 -->
-      <div class="success-card">
-        <img src="images/student3.jpg">
-        <h4>Amit Yadav</h4>
-        <p>Railway Group D</p>
-        <div class="badge">🏆</div>
-      </div>
-
-      <!-- CARD 4 -->
-      <div class="success-card">
-        <img src="images/student4.jpg">
-        <h4>Pooja Verma</h4>
-        <p>State Govt Job</p>
-        <div class="badge">🏆</div>
-      </div>
-
-      <!-- DUPLICATE FOR LOOP -->
-      <div class="success-card">
-        <img src="images/student1.jpg">
-        <h4>Rahul Kumar</h4>
-        <p>Selected in SSC CGL</p>
-        <div class="badge">🏆</div>
-      </div>
-
-      <div class="success-card">
-        <img src="images/student2.jpg">
-        <h4>Neha Sharma</h4>
-        <p>Cleared Banking Exams</p>
-        <div class="badge">🏆</div>
-      </div>
-
-      <div class="success-card">
-        <img src="images/student3.jpg">
-        <h4>Amit Yadav</h4>
-        <p>Railway Group D</p>
-        <div class="badge">🎖️</div>
-      </div>
-
-      <div class="success-card">
-        <img src="images/student4.jpg">
-        <h4>Pooja Verma</h4>
-        <p>State Govt Job</p>
-        <div class="badge">🎖️</div>
-      </div>
-
+    <div class="student-card">
+      <img src="images/student1.jpg">
+      <h4>Rohit Yadav</h4>
+      <span>SSC GD – 2024</span>
+      <div class="badge">🏆</div>
     </div>
+
+    <div class="student-card">
+      <img src="images/student2.jpg">
+      <h4>Pooja Sharma</h4>
+      <span>Haryana Police</span>
+      <div class="badge">⭐</div>
+    </div>
+
+    <div class="student-card">
+      <img src="images/student3.jpg">
+      <h4>Vikas Kumar</h4>
+      <span>Indian Army (GD)</span>
+      <div class="badge">🎖️</div>
+    </div>
+
+    <div class="student-card">
+      <img src="images/student4.jpg">
+      <h4>Anita</h4>
+      <span>Clerk Selection</span>
+      <div class="badge">🏅</div>
+    </div>
+
   </div>
 </section>
 
@@ -1216,5 +1170,30 @@ window.addEventListener("resize", () => {
   canvas.height = 250;
 });
 </script>
+<script>
+/* ===== INFINITE LOOP ===== */
+const track = document.getElementById("successTrack");
+const cards = [...track.children];
+
+// Duplicate once for seamless loop
+cards.forEach(card => {
+  track.appendChild(card.cloneNode(true));
+});
+
+/* ===== CONFETTI ON HOVER ===== */
+track.querySelectorAll(".student-card").forEach(card => {
+  card.addEventListener("mouseenter", () => {
+    confetti({
+      particleCount: 40,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+  });
+});
+</script>
+
+<!-- CONFETTI CDN -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 </body>
 </html>
