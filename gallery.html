@@ -138,6 +138,7 @@ nav a:hover { text-decoration: underline; }
   font-weight: bold;
   opacity: 0;
   transition: opacity 0.4s ease;
+  pointer-events: none; /* ✅ IMPORTANT */
 }
 
 /* Hover effect */
@@ -182,11 +183,10 @@ nav a:hover { text-decoration: underline; }
   inset: 0;
   background: rgba(0,0,0,0.95);
   z-index: 9999;
-
-  display: flex;
   justify-content: center;
   align-items: center;
 }
+
 
 .lightbox img {
   max-width: 95vw;
