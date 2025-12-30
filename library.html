@@ -498,83 +498,86 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
 }
 
 .success-wall {
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  padding: 60px 20px;
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  padding: 50px 20px;
   text-align: center;
-  color: white;
   overflow: hidden;
 }
 
 .success-wall h2 {
-  font-size: 34px;
-  margin-bottom: 5px;
+  font-size: 30px;
+  margin-bottom: 30px;
+  color: #2c3e50;
 }
 
-.success-wall .subtitle {
-  opacity: 0.8;
-  margin-bottom: 40px;
+/* SLIDER */
+.success-slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
 .success-track {
   display: flex;
-  gap: 25px;
+  width: max-content;
   animation: scrollSuccess 25s linear infinite;
 }
 
-.success-wall:hover .success-track {
+.success-slider:hover .success-track {
   animation-play-state: paused;
 }
 
-.student-card {
-  min-width: 220px;
-  background: rgba(255,255,255,0.12);
-  backdrop-filter: blur(12px);
-  border-radius: 18px;
+/* CARD */
+.success-card {
+  min-width: 260px;
+  margin: 0 15px;
+  background: white;
   padding: 20px;
-  text-align: center;
-  position: relative;
-  transition: transform 0.4s, box-shadow 0.4s;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: transform 0.3s;
 }
 
-.student-card:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+.success-card:hover {
+  transform: translateY(-8px);
 }
 
-.student-card img {
-  width: 110px;
-  height: 110px;
+.success-card img {
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
-  border: 4px solid #f1c40f;
   object-fit: cover;
+  border: 4px solid #f1c40f;
   margin-bottom: 10px;
 }
 
-.student-card h4 {
-  margin: 5px 0;
-  font-size: 18px;
+.success-card h4 {
+  margin: 8px 0 4px;
+  color: #34495e;
 }
 
-.student-card span {
+.success-card p {
   font-size: 14px;
-  opacity: 0.85;
+  color: #666;
 }
 
-.badge {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  background: #f1c40f;
-  color: #000;
-  font-size: 22px;
-  padding: 8px;
-  border-radius: 50%;
-}
-
+/* ANIMATION */
 @keyframes scrollSuccess {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
+
+/* MOBILE */
+@media(max-width:600px) {
+  .success-card {
+    min-width: 220px;
+  }
+}
+
 
 
 /* RESPONSIVE */
@@ -750,55 +753,68 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
 
   <!-- Pride  -->
   <section class="success-wall">
-  <h2>🎓 Pride of Baba Sawanth Nath Library</h2>
-  <p class="subtitle">Success stories born from books and discipline..</p>
+  <h2>🌟 Student Success Wall</h2>
 
-  <div class="success-track">
+  <div class="success-slider">
+    <div class="success-track">
 
-    <div class="student-card">
-      <img src="images/student1.jpg">
-      <h4>Rohit Yadav</h4>
-      <span>SSC GD – 2024</span>
-      <div class="badge">🏆</div>
+      <!-- CARD 1 -->
+      <div class="success-card">
+        <img src="images/student1.jpg">
+        <h4>Rahul Kumar</h4>
+        <p>Selected in SSC CGL</p>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="success-card">
+        <img src="images/student2.jpg">
+        <h4>Neha Sharma</h4>
+        <p>Cleared Banking Exams</p>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="success-card">
+        <img src="images/student3.jpg">
+        <h4>Amit Yadav</h4>
+        <p>Railway Group D</p>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="success-card">
+        <img src="images/student4.jpg">
+        <h4>Pooja Verma</h4>
+        <p>State Govt Job</p>
+      </div>
+
+      <!-- DUPLICATE FOR LOOP -->
+      <div class="success-card">
+        <img src="images/student1.jpg">
+        <h4>Rahul Kumar</h4>
+        <p>Selected in SSC CGL</p>
+      </div>
+
+      <div class="success-card">
+        <img src="images/student2.jpg">
+        <h4>Neha Sharma</h4>
+        <p>Cleared Banking Exams</p>
+      </div>
+
+      <div class="success-card">
+        <img src="images/student3.jpg">
+        <h4>Amit Yadav</h4>
+        <p>Railway Group D</p>
+      </div>
+
+      <div class="success-card">
+        <img src="images/student4.jpg">
+        <h4>Pooja Verma</h4>
+        <p>State Govt Job</p>
+      </div>
+
     </div>
-
-    <div class="student-card">
-      <img src="images/student2.jpg">
-      <h4>Pooja Sharma</h4>
-      <span>Haryana Police</span>
-      <div class="badge">⭐</div>
-    </div>
-
-    <div class="student-card">
-      <img src="images/student3.jpg">
-      <h4>Vikas Kumar</h4>
-      <span>Army (GD)</span>
-      <div class="badge">🎖️</div>
-    </div>
-
-    <div class="student-card">
-      <img src="images/student4.jpg">
-      <h4>Anita</h4>
-      <span>Clerk Selection</span>
-      <div class="badge">🏅</div>
-    </div>
-
-    <div class="student-card">
-      <img src="images/student4.jpg">
-      <h4>Anita</h4>
-      <span>Clerk Selection</span>
-      <div class="badge">🏅</div>
-    </div>
-
-    <div class="student-card">
-      <img src="images/student4.jpg">
-      <h4>Anita</h4>
-      <span>Clerk Selection</span>
-      <div class="badge">🏅</div>
-    </div>
-    
   </div>
 </section>
+
 
 <!-- REVIEWS / TESTIMONIALS -->
 <section class="reviews-section" id="reviewsSection">
