@@ -180,24 +180,50 @@ nav a:hover { text-decoration: underline; }
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.95);
+  z-index: 9999;
+
+  display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
 }
+
 .lightbox img {
-  max-width: 90%;
-  max-height: 85%;
+  max-width: 95vw;
+  max-height: 90vh;
+  object-fit: contain;
+  animation: zoomIn 0.4s ease;
 }
+
+/* Animation */
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Controls */
 .lightbox span {
   position: absolute;
   color: white;
-  font-size: 35px;
+  font-size: 40px;
   cursor: pointer;
+  user-select: none;
+  padding: 10px;
 }
-.close { top: 20px; right: 30px; }
-.prev { left: 20px; }
-.next { right: 20px; }
+
+.close {
+  top: 20px;
+  right: 30px;
+}
+
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
+}
+
 
 /* ===== FOOTER ===== */
 .modern-footer {
@@ -451,12 +477,21 @@ let current = 0;
 
 function openLightbox(i) {
   current = i;
-  document.getElementById("lightbox").style.display = "flex";
+  const lb = document.getElementById("lightbox");
+  lb.style.display = "flex";
   document.getElementById("lightboxImg").src = images[i];
+
+  // Disable background scroll
+  document.body.style.overflow = "hidden";
 }
+
 function closeLightbox() {
   document.getElementById("lightbox").style.display = "none";
+
+  // Enable scroll back
+  document.body.style.overflow = "auto";
 }
+
 function changeSlide(step) {
   current = (current + step + images.length) % images.length;
   document.getElementById("lightboxImg").src = images[current];
