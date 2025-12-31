@@ -497,21 +497,25 @@ window.addEventListener("resize", resizeCanvas);
 </script>
 
 <script>
-// Scroll-triggered animation
-function animateOnScroll() {
-  const elements = document.querySelectorAll('.animate');
-  const windowBottom = window.innerHeight;
+/* ================= SCROLL TO TOP ================= */
 
-  elements.forEach(el => {
-    const elementTop = el.getBoundingClientRect().top;
-    if(elementTop < windowBottom - 50) {
-      el.classList.add('visible');
-    }
+const scrollBtn = document.querySelector(".scroll-top");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    scrollBtn.style.display = "flex";
+  } else {
+    scrollBtn.style.display = "none";
+  }
+});
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
   });
 }
-
-window.addEventListener('scroll', animateOnScroll);
-window.addEventListener('load', animateOnScroll);
 </script>
+
 </body>
 </html>
