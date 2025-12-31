@@ -362,40 +362,47 @@ fetch("https://api.open-meteo.com/v1/forecast?latitude=28.28&longitude=76.15&cur
 
 /* YEAR */
 year.innerText=new Date().getFullYear();
+</script>
+  <script>
+/* ================= HEADER PARTICLES ================= */
 
-/* HEADER CANVAS */
 const canvas = document.getElementById("headerCanvas");
 const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = 250;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = document.querySelector("header").offsetHeight;
+}
+resizeCanvas();
 
 const particles = [];
-const particleCount = 80;
+const PARTICLE_COUNT = 80;
 
-// Initialize particles
-for (let i = 0; i < particleCount; i++) {
+// Create particles
+for (let i = 0; i < PARTICLE_COUNT; i++) {
   particles.push({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     r: Math.random() * 3 + 1,
-    dx: (Math.random() - 0.5) * 0.7,
-    dy: (Math.random() - 0.5) * 0.7,
+    dx: (Math.random() - 0.5) * 0.6,
+    dy: (Math.random() - 0.5) * 0.6,
     alpha: Math.random()
   });
 }
 
-function drawParticles() {
+function animateParticles() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Animated gradient background
+  /* Animated Gradient Background */
+  const t = Date.now() * 0.0003;
   const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-  const time = Date.now() * 0.0003;
-  gradient.addColorStop(0, `hsl(${Math.sin(time)*50+200}, 70%, 40%)`);
-  gradient.addColorStop(1, `hsl(${Math.cos(time)*50+250}, 70%, 50%)`);
+  gradient.addColorStop(0, `hsl(${220 + Math.sin(t) * 40},70%,40%)`);
+  gradient.addColorStop(1, `hsl(${260 + Math.cos(t) * 40},70%,50%)`);
+
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Draw particles
+  /* Draw particles */
   particles.forEach(p => {
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -409,17 +416,15 @@ function drawParticles() {
     if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
   });
 
-  requestAnimationFrame(drawParticles);
+  requestAnimationFrame(animateParticles);
 }
 
-drawParticles();
+animateParticles();
 
-// Adjust canvas on resize
-window.addEventListener("resize", () => {
-  canvas.width = window.innerWidth;
-  canvas.height = 250;
-});
+/* Resize support */
+window.addEventListener("resize", resizeCanvas);
 </script>
+
 <script>
 // Scroll-triggered animation
 function animateOnScroll() {
