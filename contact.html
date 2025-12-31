@@ -160,44 +160,118 @@ form button:hover {
 
 /* ===== FOOTER ===== */
 .modern-footer {
-  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   color: white;
   padding: 50px 20px 20px;
+  position: relative;
 }
+
 .footer-content {
   max-width: 1200px;
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 30px;
+  align-items: center;
+}
+
+/* BRAND */
+.footer-brand h3 {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+.footer-brand p {
+  margin: 4px 0;
+  opacity: 0.85;
+}
+.footer-brand .tagline {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* LINKS */
+.footer-links h4,
+.footer-social h4 {
+  margin-bottom: 12px;
+  font-size: 18px;
 }
 .footer-links a {
   display: block;
   color: white;
-  margin: 6px 0;
   text-decoration: none;
+  margin: 6px 0;
+  opacity: 0.85;
+  transition: all 0.3s;
 }
+.footer-links a:hover {
+  opacity: 1;
+  transform: translateX(6px);
+}
+
+/* SOCIAL */
+.footer-social .social {
+  display: inline-flex;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  color: white;
+  font-size: 20px;
+  transition: all 0.4s;
+}
+
+.social.facebook { background: #3b5998; }
+.social.instagram {
+  background: radial-gradient(circle at 30% 30%, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+}
+
+.footer-social .social:hover {
+  transform: translateY(-6px) scale(1.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* BOTTOM */
 .footer-bottom {
   text-align: center;
-  margin-top: 25px;
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255,255,255,0.15);
   font-size: 14px;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 /* SCROLL TOP */
 .scroll-top {
   position: fixed;
-  bottom: 20px;
   right: 20px;
+  bottom: 20px;
   width: 45px;
   height: 45px;
   border-radius: 50%;
   border: none;
   background: #f1c40f;
+  color: #000;
   font-size: 20px;
   cursor: pointer;
   display: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  transition: all 0.3s;
 }
+
+.scroll-top:hover {
+  transform: scale(1.1);
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .footer-brand, .footer-links, .footer-social {
+    text-align: center;
+  }
+}
+
+
 </style>
 </head>
 
@@ -207,7 +281,7 @@ form button:hover {
 <header>
   <canvas id="headerCanvas"></canvas>
   <div class="header-content">
-    <h1 id="title">Contact Village Dalanwas</h1>
+    <p id="title">Contact Village Dalanwas</p>
     <p id="subtitle">We are here to help & connect</p>
     <div style="font-size:14px;">
       🌤️ <span id="weather">Loading...</span> |
@@ -274,9 +348,7 @@ form button:hover {
 
 <!-- FOOTER -->
 <footer class="modern-footer">
-
   <div class="footer-content">
-
     <!-- LEFT -->
     <div class="footer-brand">
       <h3>🌿 Smart Village Dalanwas</h3>
@@ -290,7 +362,6 @@ form button:hover {
     <div class="footer-links">
       <h4>Quick Links</h4>
       <a href="index.html">Home</a>
-      <a href="about.html">About</a>
       <a href="library.html">Library</a>
       <a href="gallery.html">Gallery</a>
       <a href="events.html">Events</a>
