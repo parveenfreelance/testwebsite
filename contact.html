@@ -263,25 +263,57 @@ form button:hover {
 
 <!-- FOOTER -->
 <footer class="modern-footer">
+
   <div class="footer-content">
-    <div>
+
+    <!-- LEFT -->
+    <div class="footer-brand">
       <h3>🌿 Smart Village Dalanwas</h3>
-      <p>Education • Community • Progress</p>
+      <p>Haryana, India</p>
+      <p class="tagline">
+        Education • Community • Progress
+      </p>
     </div>
+
+    <!-- CENTER -->
     <div class="footer-links">
       <h4>Quick Links</h4>
       <a href="index.html">Home</a>
-      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
       <a href="library.html">Library</a>
+      <a href="gallery.html">Gallery</a>
       <a href="events.html">Events</a>
+      <a href="contact.html">Contact</a>
     </div>
-  </div>
-  <div class="footer-bottom">
-    © <span id="year"></span> Village Dalanwas | Developed by <b>Parveen Lamba</b>
-  </div>
-</footer>
 
-<button class="scroll-top" onclick="scrollToTop()">↑</button>
+    <!-- RIGHT -->
+    <div class="footer-social">
+      <h4>Connect With Us</h4>
+
+      <a href="https://www.facebook.com/" target="_blank" class="social facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+
+      <a href="https://www.instagram.com/" target="_blank" class="social instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="footer-bottom">
+    <p>
+      © <span id="year"></span> Village Dalanwas | Haryana  
+      <br>
+      Developed by <b>Parveen Lamba</b>
+    </p>
+  </div>
+
+  <!-- SCROLL TOP -->
+  <button class="scroll-top" onclick="scrollToTop()">↑</button>
+
+</footer>
 
 <script>
 /* LANGUAGE */
@@ -315,21 +347,85 @@ fetch("https://api.open-meteo.com/v1/forecast?latitude=28.28&longitude=76.15&cur
 .then(d=>weather.innerText=`${d.current_weather.temperature}°C`)
 .catch(()=>weather.innerText="N/A");
 
-/* SCROLL TOP */
-window.addEventListener("scroll",()=>{
-  document.querySelector(".scroll-top").style.display =
-  window.scrollY>300?"block":"none";
-});
-function scrollToTop(){ window.scrollTo({top:0,behavior:"smooth"}); }
+
 
 /* YEAR */
 year.innerText=new Date().getFullYear();
 
 /* HEADER CANVAS */
-const c=document.getElementById("headerCanvas"),x=c.getContext("2d");
-c.width=innerWidth;c.height=160;
-let p=[...Array(60)].map(()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*3}));
-(function a(){
-  x.clearRect(0,0,c.width,c.height);
-  x.fillStyle="#203a43";x.fillRect(0,0,c.width,c.height);
-  p.forEach(o=
+<script>
+const canvas = document.getElementById("headerCanvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = 250;
+
+const particles = [];
+const particleCount = 80;
+
+// Initialize particles
+for (let i = 0; i < particleCount; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 3 + 1,
+    dx: (Math.random() - 0.5) * 0.7,
+    dy: (Math.random() - 0.5) * 0.7,
+    alpha: Math.random()
+  });
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Animated gradient background
+  const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+  const time = Date.now() * 0.0003;
+  gradient.addColorStop(0, `hsl(${Math.sin(time)*50+200}, 70%, 40%)`);
+  gradient.addColorStop(1, `hsl(${Math.cos(time)*50+250}, 70%, 50%)`);
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Draw particles
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${p.alpha})`;
+    ctx.fill();
+
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+  });
+
+  requestAnimationFrame(drawParticles);
+}
+
+drawParticles();
+
+// Adjust canvas on resize
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = 250;
+});
+</script>
+<script>
+// Scroll-triggered animation
+function animateOnScroll() {
+  const elements = document.querySelectorAll('.animate');
+  const windowBottom = window.innerHeight;
+
+  elements.forEach(el => {
+    const elementTop = el.getBoundingClientRect().top;
+    if(elementTop < windowBottom - 50) {
+      el.classList.add('visible');
+    }
+  });
+}
+
+window.addEventListener('scroll', animateOnScroll);
+window.addEventListener('load', animateOnScroll);
+</script>
+</body>
+</html>
