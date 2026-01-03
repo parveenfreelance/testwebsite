@@ -189,6 +189,75 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
   transform: scale(1.15);
 }
 
+  /* ===== ABOUT PAGE SECTIONS ===== */
+.about-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  align-items: stretch;
+}
+
+/* Individual cards */
+.about-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  position: relative;
+}
+
+/* Vertical separator */
+.about-card:first-child::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  top: 10%;
+  width: 2px;
+  height: 80%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #ddd,
+    transparent
+  );
+}
+
+/* Headings */
+.about-card h2 {
+  margin-bottom: 15px;
+  color: #1f2d3d;
+  border-left: 5px solid #f1c40f;
+  padding-left: 12px;
+}
+
+/* Stats list */
+.about-stats li {
+  margin-bottom: 10px;
+  list-style: none;
+}
+
+.about-stats li strong {
+  color: #2c3e50;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-card:first-child::after {
+    display: none;
+  }
+}
+
+
 /* ABOUT PAGE IMAGE */
 .about-image {
   width: 100%;
@@ -246,23 +315,34 @@ footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
   <a href="contact.html">Contact</a>
 </nav>
 
-<section>
-  <h2>Village History</h2>
-  <p>
-    Village Dalanwas has a long and proud history. The village has grown
-    steadily over the years with a strong focus on education and development.
-  </p>
-</section>
+<div class="about-container">
+  <div class="about-grid">
 
-<section>
-  <h2>Village Statistics</h2>
-  <ul>
-    <li><strong>Total Population:</strong> ______</li>
-    <li><strong>Literacy Rate:</strong> ______%</li>
-    <li><strong>Total Voters:</strong> ______</li>
-    <li><strong>Current Sarpanch:</strong> ______</li>
-  </ul>
-</section>
+    <!-- Village History -->
+    <div class="about-card">
+      <h2>Village History</h2>
+      <p>
+        Village Dalanwas has a long and proud history rooted in culture,
+        unity, and agricultural heritage. Over the years, the village has
+        steadily progressed with a strong focus on education, community
+        development, and self-reliance.
+      </p>
+    </div>
+
+    <!-- Village Statistics -->
+    <div class="about-card">
+      <h2>Village Statistics</h2>
+      <ul class="about-stats">
+        <li><strong>Total Population:</strong> ______</li>
+        <li><strong>Literacy Rate:</strong> ______%</li>
+        <li><strong>Total Voters:</strong> ______</li>
+        <li><strong>Current Sarpanch:</strong> ______</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
 
 <section>
   <img src="images/village2.jpg" alt="Village Image" class="about-image">
