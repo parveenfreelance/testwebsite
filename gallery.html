@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <title>Dalanwas Village Gallery</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<!-- GOOGLE FONTS & ICONS -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 body {
   margin: 0;
@@ -225,6 +227,9 @@ nav a:hover { text-decoration: underline; }
 }
 
 
+/* FOOTER */
+footer{background:#2c3e50;color:white;text-align:center;padding:15px;}
+  
 /* ===== FOOTER ===== */
 .modern-footer {
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
@@ -314,22 +319,28 @@ nav a:hover { text-decoration: underline; }
   position: fixed;
   right: 20px;
   bottom: 20px;
-  width: 45px;
-  height: 45px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   border: none;
   background: #f1c40f;
   color: #000;
-  font-size: 20px;
+  font-size: 22px;
   cursor: pointer;
-  display: none;
+
+  /* 🔑 CENTER ARROW PERFECTLY */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
 
 .scroll-top:hover {
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
+
 
 /* RESPONSIVE */
 @media(max-width:600px){
@@ -337,8 +348,6 @@ nav a:hover { text-decoration: underline; }
     text-align: center;
   }
 }
-
-
 </style>
 </head>
 
@@ -408,6 +417,7 @@ nav a:hover { text-decoration: underline; }
   <img id="lightboxImg">
 </div>
 
+<!-- FOOTER -->
 <footer class="modern-footer">
 
   <div class="footer-content">
@@ -521,16 +531,23 @@ function setLang(lang) {
 </script>
 <script>
 document.getElementById("year").innerText = new Date().getFullYear();
+/* ================= SCROLL TO TOP ================= */
 
-/* Scroll Top Button */
 const scrollBtn = document.querySelector(".scroll-top");
 
 window.addEventListener("scroll", () => {
-  scrollBtn.style.display = window.scrollY > 300 ? "block" : "none";
+  if (window.scrollY > 300) {
+    scrollBtn.style.display = "flex";
+  } else {
+    scrollBtn.style.display = "none";
+  }
 });
 
 function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 }
 </script>
 <script>
